@@ -109,7 +109,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   )
 
   const inputClassName = classNames(
-    'bg-transparent border-0 flex-grow h-full input !outline-none px-3',
+    'bg-transparent border-0 flex-grow h-full input !outline-none px-3 w-full',
     {
       "cursor-pointer": isSelect,
       "text-black": props.disabled

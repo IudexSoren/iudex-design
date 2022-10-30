@@ -44,7 +44,7 @@ export const DropdownSelectAfterInput: React.FC<DropdownSelectAfterInputProps> =
           }
         </React.Fragment>
       }
-      <div className='pl-3 pr-3'>
+      <div className='px-2'>
         {
           isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />
         }

@@ -3,10 +3,9 @@ import { useClickOutside } from '@mantine/hooks'
 import { CloseIcon, SearchIcon } from '@common/icons'
 import { TextInput } from './TextInput'
 import { ErrorMessage } from './ErrorMessage'
-import { DropdownSelectAfterInput, DropdownSelectCheckboxItem, DropdownSelectItem, DropdownSelectOptionsList } from './dropdown-select';
+import { DropdownSelectAfterInput, DropdownSelectOptionsList } from './dropdown-select';
 import { DropdownSelectProps } from '../types'
 import classNames from 'classnames';
-import { Button } from '@common/buttons'
 
 export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectProps>(({
   afterInput,
@@ -93,7 +92,7 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
 
   const containerClassName = classNames(
     "cursor-pointer",
-    className
+    className,
   )
 
   return (
