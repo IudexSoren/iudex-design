@@ -2,6 +2,7 @@ import React from 'react'
 import { NextPage } from 'next'
 import { CancelIcon, CheckmarkFilledIcon, ForwardArrowIcon, PasswordIcon, UserIcon } from '@common/icons'
 import { Checkbox, DateTimePicker, DropdownSelect, DropdownSelectEvent, Radio, TextInput, DropdownSelectOptionProps, DateTimePickerEvent } from '@common/inputs'
+import { Button } from '@common/buttons'
 
 const Inputs: NextPage = () => {
 
@@ -263,6 +264,12 @@ const Inputs: NextPage = () => {
         labelContent='Birthdate'
         name='birthdate'
         onChange={onDateTimePickerChange}
+        placeholderText='Set your birthdate'
+        todayButton={<Button
+          className='btn-ghost py-1 w-full'
+        >
+          Today
+        </Button>}
         value={formState.birthdate}
       />
       <DropdownSelect

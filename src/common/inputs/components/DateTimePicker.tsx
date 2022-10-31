@@ -20,7 +20,6 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
   ...props
 }) => {
 
-
   const handleOnChange = (date: Date | null, event: React.ChangeEvent<HTMLInputElement> | undefined) => {
     if (!onChange) return;
 
