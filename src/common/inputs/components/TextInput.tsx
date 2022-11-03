@@ -11,7 +11,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   className,
   errorMessage,
   inputSize = 'md',
-  isSelect,
+  showAfterAndBeforeInput = false,
   labelContent,
   lightBackground = false,
   onBlur,
@@ -56,13 +56,13 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   }
 
   const addFocusClasses = () => {
-    if (staticLabel || !labelContent || !labelContainerRef.current || inputRef.current?.value || isSelect) return;
+    if (staticLabel || !labelContent || !labelContainerRef.current || inputRef.current?.value || showAfterAndBeforeInput) return;
 
     labelContainerRef.current.classList.add('!px-3', labelTranslateClass)
   }
 
   const removeFocusClasses = () => {
-    if (staticLabel || !labelContent || !labelContainerRef.current || isSelect) return;
+    if (staticLabel || !labelContent || !labelContainerRef.current || showAfterAndBeforeInput) return;
 
     labelContainerRef.current.classList.remove('!px-3', labelTranslateClass)
   }
@@ -111,7 +111,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   const inputClassName = classNames(
     'bg-transparent border-0 flex-grow h-full input !outline-none px-3 w-full',
     {
-      "cursor-pointer": isSelect,
+      "cursor-pointer": showAfterAndBeforeInput,
       "text-black": props.disabled
     }
   )
@@ -127,7 +127,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   const sideComponentsClassName = classNames(
     'flex items-center justify-center relative',
     {
-      'opacity-0': !hasValue && !hasFocus && !staticLabel && labelContent && !isSelect,
+      'opacity-0': !hasValue && !hasFocus && !staticLabel && labelContent && !showAfterAndBeforeInput,
       '!bg-base-200 cursor-not-allowed opacity-50': props.disabled
     }
   )
@@ -174,7 +174,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
             onBlur={onBlurInput}
             onChange={onInputChange}
             onFocus={onFocusInput}
-            placeholder={(hasFocus || staticLabel || !labelContent || isSelect) ? placeholder : ''}
+            placeholder={(hasFocus || staticLabel || !labelContent || showAfterAndBeforeInput) ? placeholder : ''}
             ref={mergeRefs(inputRef, ref)}
           />
           {
