@@ -24,6 +24,7 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
   onChange,
   options = [],
   placeholder,
+  readonly = false,
   value
 }, ref) => {
 
@@ -38,7 +39,7 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
   const handleClearSelection = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
 
-    if (!onChange || disabled) return;
+    if (!onChange || disabled || readonly) return;
 
     onChange({
       name: name ?? '',
@@ -47,7 +48,7 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
   }
 
   const handleClickContainer = () => {
-    if (disabled) return;
+    if (disabled || readonly) return;
 
     setIsOpen(!isOpen);
   }

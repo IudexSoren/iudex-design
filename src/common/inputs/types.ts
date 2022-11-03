@@ -29,6 +29,7 @@ export interface DropdownSelectProps extends InputBaseProps {
   onChange: (event: DropdownSelectEvent, ...args: any) => void
   options: DropdownSelectOptionProps[]
   placeholder?: string
+  readonly?: boolean
   value: any
   virtualized?: boolean
 }

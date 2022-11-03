@@ -286,6 +286,17 @@ const Inputs: NextPage = () => {
         value={formState.playlist}
       />
       <DropdownSelect
+        clearable
+        labelContent='Playlist'
+        lightBackground
+        name='playlist'
+        onChange={onSelectChange}
+        options={dropdownSelectOptions}
+        placeholder='Select a playlist'
+        readonly
+        value={formState.playlist}
+      />
+      <DropdownSelect
         errorMessage={
           <div className='flex gap-1 items-center'>
             <CancelIcon /> Required
