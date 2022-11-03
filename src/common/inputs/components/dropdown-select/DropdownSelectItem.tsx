@@ -5,12 +5,15 @@ import { DropdownSelectItemProps } from '@common/inputs/types'
 export const DropdownSelectItem: React.FC<DropdownSelectItemProps> = ({
   lightBackground = false,
   onClickItem,
-  option
+  option,
+  selected = false
 }) => {
 
   const itemClassName = classNames(
     'cursor-pointer p-3 relative',
     {
+      "bg-base-200": lightBackground && selected,
+      "bg-base-300": !lightBackground && selected,
       "hover:bg-base-200": lightBackground,
       "hover:bg-base-300": !lightBackground,
       "cursor-not-allowed opacity-50": option.disabled

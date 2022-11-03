@@ -1,6 +1,5 @@
 import React from 'react'
 import { useClickOutside } from '@mantine/hooks'
-import { CloseIcon, SearchIcon } from '@common/icons'
 import { TextInput } from './TextInput'
 import { ErrorMessage } from './ErrorMessage'
 import { DropdownSelectAfterInput, DropdownSelectOptionsList } from './dropdown-select';
@@ -136,7 +135,7 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
           className={containerClassName}
           disabled={disabled}
           inputSize={inputSize}
-          isSelect={true}
+          showAfterAndBeforeInput={true}
           labelContent={labelContent}
           lightBackground={lightBackground}
           readOnly={true}

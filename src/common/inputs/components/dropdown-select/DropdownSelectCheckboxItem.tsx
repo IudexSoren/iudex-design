@@ -7,12 +7,14 @@ export const DropdownSelectCheckboxItem: React.FC<DropdownSelectCheckboxItemProp
   checked,
   lightBackground,
   onClickItem,
-  option
+  option,
 }) => {
 
   const itemClassName = classNames(
     'flex-row-reverse gap-3 p-3',
     {
+      "bg-base-200": lightBackground && checked,
+      "bg-base-300": !lightBackground && checked,
       "hover:bg-base-200": lightBackground,
       "hover:bg-base-300": !lightBackground,
       "cursor-not-allowed opacity-50": option.disabled

@@ -44,6 +44,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
 
       return (
         <DropdownSelectItem
+          selected={value === option.value}
           {...itemProps}
         />
       )
