@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css"
 export const DateTimePicker: React.FC<DateTimePickerProps> = ({
   afterInput,
   beforeInput,
+  clearable,
   disabled = false,
   labelContent,
   lightBackground = false,
@@ -59,7 +60,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
                 <React.Fragment>
                   {afterInput}
                   {
-                    !!value ?
+                    (!!value && clearable) ?
                       (
                         <Button
                           className={buttonClassName}

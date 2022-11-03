@@ -21,7 +21,6 @@ export interface DateTimePickerHeaderProps extends ReactDatePickerCustomHeaderPr
 // #region DropdownSelect
 export interface DropdownSelectProps extends InputBaseProps {
   className?: string
-  clearable?: boolean
   emptyList?: ReactElement
   filterable?: boolean
   listClassName?: string
@@ -42,13 +41,14 @@ export interface DropdownSelectAfterInputProps extends BackgroundAttr, DisabledI
   hasValue: boolean
 }
 
-export interface DropdownSelectCheckboxItemProps extends DropdownSelectItemProps {
+export interface DropdownSelectCheckboxItemProps extends Omit<DropdownSelectItemProps, 'selected'> {
   checked: boolean
 }
 
 export interface DropdownSelectItemProps extends BackgroundAttr {
   onClickItem: (value: any) => void
   option: DropdownSelectOptionProps
+  selected: boolean
 }
 
 export interface DropdownSelectOptionProps extends DisabledInputAttr {
@@ -80,7 +80,7 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement>, Check
 }
 
 export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement>, InputBaseProps {
-  isSelect?: boolean // Used to complement the DropdownSelect component
+  showAfterAndBeforeInput?: boolean
   staticLabel?: boolean
 }
 
@@ -96,7 +96,7 @@ export interface DropdownSelectEvent {
 }
 
 // Generic Input
-export interface InputBaseProps extends BackgroundAttr, BeforeAndAfterInputAttrs, DisabledInputAttr, ErrorMessageAttr, InputSizeAttr, LabelContentAttr {
+export interface InputBaseProps extends BackgroundAttr, BeforeAndAfterInputAttrs, ClearableInputAttr, DisabledInputAttr, ErrorMessageAttr, InputSizeAttr, LabelContentAttr {
 
 }
 
@@ -109,6 +109,10 @@ export interface BeforeAndAfterInputAttrs {
 export interface CheckableInputAttr {
   containerClassName?: string
   contentClickable?: boolean
+}
+
+export interface ClearableInputAttr {
+  clearable?: boolean
 }
 
 export interface DisabledInputAttr {

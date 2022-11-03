@@ -261,15 +261,18 @@ const Inputs: NextPage = () => {
         </div>
       </div>
       <DateTimePicker
+        clearable
         labelContent='Birthdate'
         name='birthdate'
         onChange={onDateTimePickerChange}
         placeholderText='Set your birthdate'
-        todayButton={<Button
-          className='btn-ghost py-1 w-full'
-        >
-          Today
-        </Button>}
+        todayButton={(
+          <Button
+            className='btn-ghost !py-2 w-full'
+          >
+            Today
+          </Button>
+        )}
         value={formState.birthdate}
       />
       <DropdownSelect
