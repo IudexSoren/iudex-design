@@ -21,7 +21,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
   ...props
 }) => {
 
-  const handleOnChange = (date: Date | null, event: React.ChangeEvent<HTMLInputElement> | undefined) => {
+  const handleOnChange = (date: Date | [Date | null, Date | null] | null, event: React.ChangeEvent<HTMLInputElement> | undefined) => {
     if (!onChange) return;
 
     onChange({
@@ -37,7 +37,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
 
     onChange({
       name,
-      value: null
+      value: props.selectsRange ? [null, null] : null
     });
   }
 
@@ -83,12 +83,14 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
       }
       disabled={disabled}
       dropdownMode='select'
+      endDate={Array.isArray(value) ? value[1] : null}
       onChange={(date, event) => handleOnChange(date, event as React.ChangeEvent<HTMLInputElement>)}
       popperClassName='!p-0 !z-20'
       renderCustomHeader={(headerProps) => <DateTimePickerHeader {...headerProps} />}
-      selected={value}
+      selected={Array.isArray(value) ? null : value}
       showMonthDropdown
       showPopperArrow={false}
+      startDate={Array.isArray(value) ? value[0] : null}
       {...props}
     />
   )

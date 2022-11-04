@@ -8,6 +8,7 @@ const Inputs: NextPage = () => {
 
   const [formState, setFormState] = React.useState({
     birthdate: null,
+    booking: [null, null],
     carBrand: null,
     country: null,
     password: '',
@@ -274,6 +275,22 @@ const Inputs: NextPage = () => {
           </Button>
         )}
         value={formState.birthdate}
+      />
+      <DateTimePicker
+        clearable
+        labelContent='Booking'
+        name='booking'
+        onChange={onDateTimePickerChange}
+        placeholderText='Set your booking'
+        selectsRange={true}
+        todayButton={(
+          <Button
+            className='btn-ghost !py-2 w-full'
+          >
+            Today
+          </Button>
+        )}
+        value={formState.booking}
       />
       <DropdownSelect
         clearable
