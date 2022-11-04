@@ -16,7 +16,7 @@ const Buttons: NextPage = () => {
         ref={buttonRef}
       >
         <span>
-          Nigga button
+          Button text
         </span>
         <ForwardArrowIcon className='text-xl' />
       </Button>
