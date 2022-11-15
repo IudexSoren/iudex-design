@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { Button } from '@common/buttons'
 import { CloseIcon, SearchIcon } from '@common/icons'
 import { TextInput } from '@common/inputs'
-import { DropdownSelectOptionsListProps } from '@common/inputs/types'
+import { DropdownSelectGroupOptionProps, DropdownSelectOptionProps, DropdownSelectOptionsListProps } from '@common/inputs/types'
 import { DropdownSelectCheckboxItem } from './DropdownSelectCheckboxItem'
 import { DropdownSelectItem } from './DropdownSelectItem'
 
@@ -22,8 +22,8 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
   value
 }) => {
 
-  const renderOptions = React.useCallback(() => {
-    const filteredOptions = options?.filter(option => option.label.toLowerCase().includes(filterText.toLowerCase()));
+  const renderOptions = React.useCallback((optionsToRender: (DropdownSelectGroupOptionProps | DropdownSelectOptionProps)[]) => {
+    const filteredOptions = optionsToRender?.filter(option => option.label.toLowerCase().includes(filterText.toLowerCase()));
 
     return filteredOptions?.map((option, index) => {
 
@@ -31,20 +31,36 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
         key: index,
         lightBackground,
         onClickItem,
-        option,
+        option: option as DropdownSelectOptionProps,
+      }
+
+      if ((option as DropdownSelectGroupOptionProps).options) {
+        return (
+          <React.Fragment
+            key={index}
+          >
+            <div
+              className='px-3 py-1 text-zinc-500'
+            >
+
+              {option.label}
+            </div>
+            {renderOptions((option as DropdownSelectGroupOptionProps).options)}
+          </React.Fragment>
+        )
       }
 
       if (multiple)
         return (
           <DropdownSelectCheckboxItem
-            checked={value.includes(option.value)}
+            checked={value.includes((option as DropdownSelectOptionProps).value)}
             {...itemProps}
           />
         );
 
       return (
         <DropdownSelectItem
-          selected={value === option.value}
+          selected={value === (option as DropdownSelectOptionProps).value}
           {...itemProps}
         />
       )
@@ -113,7 +129,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
               <ul
                 className='max-h-[225px] overflow-auto'
               >
-                {renderOptions()}
+                {renderOptions(options)}
               </ul>
             </React.Fragment>
           )

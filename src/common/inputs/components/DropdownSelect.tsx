@@ -3,7 +3,7 @@ import { useClickOutside } from '@mantine/hooks'
 import { TextInput } from './TextInput'
 import { ErrorMessage } from './ErrorMessage'
 import { DropdownSelectAfterInput, DropdownSelectOptionsList } from './dropdown-select';
-import { DropdownSelectProps } from '../types'
+import { DropdownSelectOptionProps, DropdownSelectProps } from '../types'
 import classNames from 'classnames';
 
 export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectProps>(({
@@ -84,10 +84,10 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
     if (multiple) {
       if (options.length === 0) return '';
 
-      return options.filter(option => value.includes(option.value)).map(option => option.label).join(', ');
+      return options.filter((option) => value.includes((option as DropdownSelectOptionProps).value)).map(option => option.label).join(', ');
     }
 
-    return options.find(option => option.value === value)?.label ?? '';
+    return options.find(option => (option as DropdownSelectOptionProps).value === value)?.label ?? '';
   }
 
   const containerClassName = classNames(
@@ -111,9 +111,10 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
               clearable={clearable}
               disabled={disabled}
               handleClearSelection={handleClearSelection}
+              hasValue={multiple ? value.length !== 0 : !!value}
               isOpen={isOpen}
               lightBackground={lightBackground}
-              hasValue={multiple ? value.length !== 0 : !!value}
+              readonly={readonly}
             />
           }
           beforeInput={

@@ -28,7 +28,7 @@ export interface DropdownSelectProps extends InputBaseProps {
   multiple?: boolean
   name?: string
   onChange: (event: DropdownSelectEvent, ...args: any) => void
-  options: DropdownSelectOptionProps[]
+  options: (DropdownSelectOptionProps | DropdownSelectGroupOptionProps)[]
   placeholder?: string
   readonly?: boolean
   value: any
@@ -39,24 +39,30 @@ export interface DropdownSelectAfterInputProps extends BackgroundAttr, DisabledI
   afterInput?: ReactElement
   clearable?: boolean
   handleClearSelection: (event: React.MouseEvent<HTMLButtonElement>) => void
-  isOpen: boolean
   hasValue: boolean
+  isOpen: boolean
+  readonly?: boolean
 }
 
 export interface DropdownSelectCheckboxItemProps extends Omit<DropdownSelectItemProps, 'selected'> {
   checked: boolean
 }
 
-export interface DropdownSelectItemProps extends BackgroundAttr {
-  onClickItem: (value: any) => void
-  option: DropdownSelectOptionProps
-  selected: boolean
+export interface DropdownSelectGroupOptionProps extends DisabledInputAttr {
+  label: string
+  options: DropdownSelectOptionProps[]
 }
 
 export interface DropdownSelectOptionProps extends DisabledInputAttr {
   children?: ReactElement | string // If no children is provided, label will appear as the option
   label: string
   value: string | number | boolean
+}
+
+export interface DropdownSelectItemProps extends BackgroundAttr {
+  onClickItem: (value: any) => void
+  option: DropdownSelectOptionProps
+  selected: boolean
 }
 
 export interface DropdownSelectOptionsListProps extends BackgroundAttr, InputSizeAttr {
@@ -67,7 +73,7 @@ export interface DropdownSelectOptionsListProps extends BackgroundAttr, InputSiz
   listClassName?: string
   multiple: boolean
   onClickItem: (selectedValue: any) => void
-  options: DropdownSelectOptionProps[]
+  options: (DropdownSelectOptionProps | DropdownSelectGroupOptionProps)[]
   setFilterText: (filterText: string) => void
   value: any
 }

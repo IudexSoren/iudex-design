@@ -13,9 +13,10 @@ export const DropdownSelectAfterInput: React.FC<DropdownSelectAfterInputProps> =
   clearable,
   disabled,
   handleClearSelection,
+  hasValue,
   isOpen,
   lightBackground,
-  hasValue,
+  readonly
 }) => {
 
   const buttonClassName = classNames(
@@ -37,6 +38,7 @@ export const DropdownSelectAfterInput: React.FC<DropdownSelectAfterInputProps> =
                 <Button
                   className={buttonClassName}
                   onClick={handleClearSelection}
+                  disabled={disabled || readonly}
                 >
                   <CloseIcon />
                 </Button>

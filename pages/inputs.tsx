@@ -8,7 +8,7 @@ const Inputs: NextPage = () => {
 
   const [formState, setFormState] = React.useState({
     birthdate: null,
-    booking: [null, null],
+    bookingDate: [null, null],
     carBrand: null,
     country: null,
     password: '',
@@ -67,7 +67,7 @@ const Inputs: NextPage = () => {
     })
   }
 
-  const dropdownSelectOptions: DropdownSelectOptionProps[] = React.useMemo(() => [
+  const playlists = React.useMemo<DropdownSelectOptionProps[]>(() => [
     {
       label: 'Music',
       value: 1,
@@ -94,7 +94,44 @@ const Inputs: NextPage = () => {
     }
   ], [formState]);
 
-  const carBrands: DropdownSelectOptionProps[] = React.useMemo(() => [
+  const playlistsGrouped = React.useMemo(() => [
+    {
+      label: 'Music',
+      options: [
+        {
+          label: 'Pop',
+          value: 1,
+        },
+        {
+          label: 'Rock',
+          value: 2,
+        },
+        {
+          label: 'Metal',
+          value: 3,
+        },
+      ]
+    },
+    {
+      label: 'Cars',
+      options: [
+        {
+          label: 'BMW',
+          value: 4,
+        },
+        {
+          label: 'Ford',
+          value: 5,
+        },
+        {
+          label: 'Ferrari',
+          value: 6,
+        }
+      ]
+    }
+  ], [formState]);
+
+  const carBrands = React.useMemo<DropdownSelectOptionProps[]>(() => [
     {
       label: 'BMW',
       value: 1,
@@ -279,7 +316,7 @@ const Inputs: NextPage = () => {
       <DateTimePicker
         clearable
         labelContent='Booking'
-        name='booking'
+        name='bookingDate'
         onChange={onDateTimePickerChange}
         placeholderText='Set your booking'
         selectsRange={true}
@@ -290,7 +327,7 @@ const Inputs: NextPage = () => {
             Today
           </Button>
         )}
-        value={formState.booking}
+        value={formState.bookingDate}
       />
       <DropdownSelect
         clearable
@@ -298,7 +335,7 @@ const Inputs: NextPage = () => {
         lightBackground
         name='playlist'
         onChange={onSelectChange}
-        options={dropdownSelectOptions}
+        options={playlists}
         placeholder='Select a playlist'
         value={formState.playlist}
       />
@@ -308,7 +345,7 @@ const Inputs: NextPage = () => {
         lightBackground
         name='playlist'
         onChange={onSelectChange}
-        options={dropdownSelectOptions}
+        options={playlists}
         placeholder='Select a playlist'
         readonly
         value={formState.playlist}
@@ -327,6 +364,16 @@ const Inputs: NextPage = () => {
         options={carBrands}
         placeholder='Select a car brand'
         value={formState.carBrand}
+      />
+      <DropdownSelect
+        clearable
+        labelContent='Playlist grouped'
+        lightBackground
+        name='playlist'
+        onChange={onSelectChange}
+        options={playlistsGrouped}
+        placeholder='Select a playlist'
+        value={formState.playlist}
       />
       <DropdownSelect
         disabled
@@ -350,7 +397,7 @@ const Inputs: NextPage = () => {
         multiple
         name='playlists'
         onChange={onSelectChange}
-        options={dropdownSelectOptions}
+        options={playlists}
         placeholder='Select at least one playlist'
         value={formState.playlists}
       />
