@@ -35,17 +35,24 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
       }
 
       if ((option as DropdownSelectGroupOptionProps).options) {
+        const subOptions = [...(option as DropdownSelectGroupOptionProps).options];
+        if (option.disabled) {
+          for (const subOption of subOptions) {
+            subOption.disabled = true;
+          }
+        }
+
         return (
           <React.Fragment
             key={index}
           >
             <div
-              className='px-3 py-1 text-zinc-500'
+              className='px-3 flex gap-1 items-center py-1 text-zinc-500'
             >
-
-              {option.label}
+              <span className='text-sm'>{option.label}</span>
             </div>
-            {renderOptions((option as DropdownSelectGroupOptionProps).options)}
+            {renderOptions(subOptions)}
+            <hr className=' border-zinc-300 w-full' />
           </React.Fragment>
         )
       }
@@ -104,7 +111,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
                     <TextInput
                       afterInput={
                         <Button
-                          className='h-full btn-sm'
+                          className='btn-sm btn-ghost h-full '
                           onClick={handleClearFilterText}
                         >
                           <CloseIcon />

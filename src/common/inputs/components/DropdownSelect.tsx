@@ -3,7 +3,7 @@ import { useClickOutside } from '@mantine/hooks'
 import { TextInput } from './TextInput'
 import { ErrorMessage } from './ErrorMessage'
 import { DropdownSelectAfterInput, DropdownSelectOptionsList } from './dropdown-select';
-import { DropdownSelectOptionProps, DropdownSelectProps } from '../types'
+import { DropdownSelectGroupOptionProps, DropdownSelectOptionProps, DropdownSelectProps } from '../types'
 import classNames from 'classnames';
 
 export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectProps>(({
@@ -28,12 +28,19 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
   value
 }, ref) => {
 
+  const [textToShow, setTextToShow] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
   const [filterText, setFilterText] = React.useState('');
 
+  React.useEffect(() => {
+    if (value === null || value.length === 0) setTextToShow('');
+
+    getTextInputValue();
+  }, [value])
+
   const optionsContainerRef = useClickOutside(() => {
     setFilterText('');
-    setIsOpen(false)
+    setIsOpen(false);
   });
 
   const handleClearSelection = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -82,12 +89,35 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
 
   const getTextInputValue = () => {
     if (multiple) {
-      if (options.length === 0) return '';
+      if (options.length === 0) {
+        setTextToShow('');
 
-      return options.filter((option) => value.includes((option as DropdownSelectOptionProps).value)).map(option => option.label).join(', ');
+        return;
+      };
+
+      setTextToShow(options.filter((option) => value.includes((option as DropdownSelectOptionProps).value)).map(option => option.label).join(', '));
+
+      return;
     }
 
-    return options.find(option => (option as DropdownSelectOptionProps).value === value)?.label ?? '';
+    for (const option of options) {
+      if (!!(option as DropdownSelectGroupOptionProps).options) {
+        for (const subOption of (option as DropdownSelectGroupOptionProps).options) {
+          if (subOption.value !== value) continue;
+
+          setTextToShow(subOption.label);
+
+          return;
+        }
+      }
+
+      if ((option as DropdownSelectOptionProps).value !== value) continue;
+
+      setTextToShow((option as DropdownSelectOptionProps).label)
+
+      return;
+    }
+
   }
 
   const containerClassName = classNames(
@@ -144,7 +174,7 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
           spellCheck={false}
           staticLabel
           placeholder={placeholder}
-          value={getTextInputValue()}
+          value={textToShow}
         />
       </div>
       <DropdownSelectOptionsList

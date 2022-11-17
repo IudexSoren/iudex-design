@@ -3,6 +3,7 @@ import { NextPage } from 'next'
 import { CancelIcon, CheckmarkFilledIcon, ForwardArrowIcon, PasswordIcon, UserIcon } from '@common/icons'
 import { Checkbox, DateTimePicker, DropdownSelect, DropdownSelectEvent, Radio, TextInput, DropdownSelectOptionProps, DateTimePickerEvent } from '@common/inputs'
 import { Button } from '@common/buttons'
+import { DropdownSelectGroupOptionProps } from '@common/inputs/types'
 
 const Inputs: NextPage = () => {
 
@@ -13,6 +14,7 @@ const Inputs: NextPage = () => {
     country: null,
     password: '',
     playlist: null,
+    playlistGrouped: null,
     playlists: [],
     rememberMe: true,
     role: 'admin',
@@ -94,8 +96,9 @@ const Inputs: NextPage = () => {
     }
   ], [formState]);
 
-  const playlistsGrouped = React.useMemo(() => [
+  const playlistsGrouped = React.useMemo<(DropdownSelectOptionProps | DropdownSelectGroupOptionProps)[]>(() => [
     {
+      disabled: true,
       label: 'Music',
       options: [
         {
@@ -128,6 +131,10 @@ const Inputs: NextPage = () => {
           value: 6,
         }
       ]
+    },
+    {
+      label: 'Variedad',
+      value: 7,
     }
   ], [formState]);
 
@@ -341,7 +348,7 @@ const Inputs: NextPage = () => {
       />
       <DropdownSelect
         clearable
-        labelContent='Playlist'
+        labelContent='Playlist (Readonly)'
         lightBackground
         name='playlist'
         onChange={onSelectChange}
@@ -358,7 +365,6 @@ const Inputs: NextPage = () => {
         }
         filterable
         labelContent='Car brand'
-        lightBackground
         name='carBrand'
         onChange={onSelectChange}
         options={carBrands}
@@ -367,13 +373,13 @@ const Inputs: NextPage = () => {
       />
       <DropdownSelect
         clearable
-        labelContent='Playlist grouped'
+        labelContent='Playlist (Grouped)'
         lightBackground
-        name='playlist'
+        name='playlistGrouped'
         onChange={onSelectChange}
         options={playlistsGrouped}
         placeholder='Select a playlist'
-        value={formState.playlist}
+        value={formState.playlistGrouped}
       />
       <DropdownSelect
         disabled
@@ -392,6 +398,7 @@ const Inputs: NextPage = () => {
         value={formState.carBrand}
       />
       <DropdownSelect
+      clearable
         filterable
         labelContent='Add to playlist'
         multiple
