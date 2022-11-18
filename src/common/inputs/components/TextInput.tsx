@@ -193,9 +193,15 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
           />
         </div>
       </div>
-      <ErrorMessage>
-        {errorMessage}
-      </ErrorMessage>
+      {
+        typeof errorMessage !== 'boolean' ?
+          (
+            <ErrorMessage>
+              {errorMessage}
+            </ErrorMessage>
+          ) :
+          null
+      }
     </div >
   )
 })

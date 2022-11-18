@@ -166,6 +166,7 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
           autoComplete="off"
           className={containerClassName}
           disabled={disabled}
+          errorMessage={!!errorMessage}
           inputSize={inputSize}
           showAfterAndBeforeInput={true}
           labelContent={labelContent}
@@ -194,7 +195,7 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
       {
         errorMessage && (
           <ErrorMessage className='mt-1'>
-            {errorMessage}
+            {(typeof errorMessage !== 'boolean') ? errorMessage : ''}
           </ErrorMessage>
         )
       }

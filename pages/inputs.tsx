@@ -357,6 +357,17 @@ const Inputs: NextPage = () => {
         readonly
         value={formState.playlist}
       />
+
+      <DropdownSelect
+        clearable
+        labelContent='Playlist (Grouped)'
+        lightBackground
+        name='playlistGrouped'
+        onChange={onSelectChange}
+        options={playlistsGrouped}
+        placeholder='Select a playlist'
+        value={formState.playlistGrouped}
+      />
       <DropdownSelect
         errorMessage={
           <div className='flex gap-1 items-center'>
@@ -370,16 +381,6 @@ const Inputs: NextPage = () => {
         options={carBrands}
         placeholder='Select a car brand'
         value={formState.carBrand}
-      />
-      <DropdownSelect
-        clearable
-        labelContent='Playlist (Grouped)'
-        lightBackground
-        name='playlistGrouped'
-        onChange={onSelectChange}
-        options={playlistsGrouped}
-        placeholder='Select a playlist'
-        value={formState.playlistGrouped}
       />
       <DropdownSelect
         disabled
@@ -398,7 +399,7 @@ const Inputs: NextPage = () => {
         value={formState.carBrand}
       />
       <DropdownSelect
-      clearable
+        clearable
         filterable
         labelContent='Add to playlist'
         multiple

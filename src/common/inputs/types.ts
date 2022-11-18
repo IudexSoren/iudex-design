@@ -128,7 +128,7 @@ export interface DisabledInputAttr {
 }
 
 export interface ErrorMessageAttr {
-  errorMessage?: ReactElement | string
+  errorMessage?: ReactElement | string | boolean
 }
 
 export interface InputSizeAttr {
