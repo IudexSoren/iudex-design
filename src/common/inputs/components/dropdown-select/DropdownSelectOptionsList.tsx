@@ -23,7 +23,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
 }) => {
 
   const renderOptions = React.useCallback((optionsToRender: (DropdownSelectGroupOptionProps | DropdownSelectOptionProps)[]) => {
-    const filteredOptions = optionsToRender?.filter(option => option.label.toLowerCase().includes(filterText.toLowerCase()));
+    const filteredOptions = optionsToRender?.filter(option => !!(option as DropdownSelectGroupOptionProps).options ? true : option.label.toLowerCase().includes(filterText.toLowerCase()));
 
     return filteredOptions?.map((option, index) => {
 
@@ -47,7 +47,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
             key={index}
           >
             <div
-              className='px-3 flex gap-1 items-center py-1 text-zinc-500'
+              className='flex gap-1 items-center px-3 py-1 text-zinc-500'
             >
               <span className='text-sm'>{option.label}</span>
             </div>

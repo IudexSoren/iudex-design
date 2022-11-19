@@ -133,7 +133,7 @@ const Inputs: NextPage = () => {
       ]
     },
     {
-      label: 'Variedad',
+      label: 'Random stuff',
       value: 7,
     }
   ], [formState]);
@@ -357,9 +357,18 @@ const Inputs: NextPage = () => {
         readonly
         value={formState.playlist}
       />
-
       <DropdownSelect
         clearable
+        labelContent='Playlist (Grouped)'
+        name='playlistGrouped'
+        onChange={onSelectChange}
+        options={playlistsGrouped}
+        placeholder='Select a playlist'
+        value={formState.playlistGrouped}
+      />
+      <DropdownSelect
+        clearable
+        filterable
         labelContent='Playlist (Grouped)'
         lightBackground
         name='playlistGrouped'
