@@ -7,9 +7,26 @@ const Typographies: NextPage = () => {
     <div>
       <Typography
         level='h1'
-        size='2xl'
+        size='4xl'
       >
         Heading
+      </Typography>
+      <Typography
+        level='h1'
+        size='4xl'
+      >
+        Heading size 4xl
+      </Typography>
+      <Typography
+        level='h1'
+        size='sm'
+      >
+        Heading size sm
+      </Typography>
+      <Typography
+        level='p'
+      >
+        Paragraph
       </Typography>
     </div>
   )

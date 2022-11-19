@@ -33,6 +33,12 @@ export const Typography: React.FC<TypographyProps> = ({
     case '2xl':
       typographySizeClass = 'text-2xl';
       break;
+    case '3xl':
+      typographySizeClass = 'text-3xl';
+      break;
+    case '4xl':
+      typographySizeClass = 'text-4xl';
+      break;
     default:
       typographySizeClass = 'text-md';
   }
