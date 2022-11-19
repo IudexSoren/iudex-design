@@ -6,7 +6,7 @@ import { DropdownSelectAfterInput, DropdownSelectOptionsList } from './dropdown-
 import { DropdownSelectGroupOptionProps, DropdownSelectOptionProps, DropdownSelectProps } from '../types'
 import classNames from 'classnames';
 
-export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectProps>(({
+export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectProps>(({
   afterInput,
   beforeInput,
   className,
@@ -172,6 +172,7 @@ export const DropdownSelect = React.forwardRef<HTMLDivElement, DropdownSelectPro
           labelContent={labelContent}
           lightBackground={lightBackground}
           readOnly={true}
+          ref={ref}
           spellCheck={false}
           staticLabel
           placeholder={placeholder}
