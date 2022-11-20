@@ -2,6 +2,7 @@ import React from 'react'
 import { NextPage } from 'next'
 import { CancelIcon, CheckmarkFilledIcon, ForwardArrowIcon, PasswordIcon, UserIcon } from '@common/icons'
 import { Checkbox, DateTimePicker, DropdownSelect, DropdownSelectEvent, Radio, TextInput, DropdownSelectOptionProps, DateTimePickerEvent } from '@common/inputs'
+import { Typography } from '@common/typographies'
 import { Button } from '@common/buttons'
 import { DropdownSelectGroupOptionProps } from '@common/inputs/types'
 
@@ -169,271 +170,557 @@ const Inputs: NextPage = () => {
     <div
       className='flex flex-col gap-3 p-3 py-10'
     >
-      <TextInput
-        disabled
-        afterInput={
-          <div className='pr-3'>
-            <CheckmarkFilledIcon />
-          </div>
-        }
-        autoComplete={'off'}
-        beforeInput={
-          <div className='pl-3'>
-            <UserIcon />
-          </div>
-        }
-        labelContent={(<div className='flex items-center gap-2'><UserIcon /> Username</div>)}
-        name='username'
-        onChange={onInputChange}
-        placeholder='E.g.: Iudex, Soren, ...'
-        spellCheck={false}
-        value={formState.username}
-      />
-      <TextInput
-        afterInput={
-          <div className='pr-3'>
-            <CheckmarkFilledIcon />
-          </div>
-        }
-        beforeInput={
-          <div className='pl-3'>
-            <UserIcon />
-          </div>
-        }
-        autoComplete={'off'}
-        labelContent={(<div className='flex items-center gap-2'><UserIcon /> Username</div>)}
-        name='username'
-        onChange={onInputChange}
-        placeholder='E.g.: Iudex, Soren, ...'
-        spellCheck={false}
-        value={formState.username}
-      />
-      <TextInput
-        beforeInput={
-          <div className='pl-3'>
-            <PasswordIcon />
-          </div>
-        }
-        autoComplete={'off'}
-        id='password'
-        labelContent={(<div className='flex items-center gap-2'><PasswordIcon /> Password</div>)}
-        lightBackground
-        name='password'
-        onChange={onInputChange}
-        spellCheck={false}
-        type='password'
-        value={formState.password}
-      />
-      <TextInput
-        afterInput={
-          <div className='pr-3'>
-            <ForwardArrowIcon />
-          </div>
-        }
-        autoComplete={'off'}
-        id='username'
-        labelContent={'Username'}
-        name='username'
-        onChange={onInputChange}
-        placeholder='E.g.: Iudex, Soren, ...'
-        value={formState.username}
-        spellCheck={false}
-        staticLabel
-      />
-      <TextInput
-        afterInput={
-          <div className='pr-3'>
-            <ForwardArrowIcon />
-          </div>
-        }
-        autoComplete={'off'}
-        errorMessage={
-          <div className='flex gap-1 items-center'>
-            <CancelIcon /> Required
-          </div>
-        }
-        labelContent={'Username'}
-        name='username'
-        onChange={onInputChange}
-        placeholder='E.g.: Iudex, Soren, ...'
-        value={formState.username}
-      />
-      <Checkbox
-        checked={formState.rememberMe}
-        containerClassName='flex-row-reverse gap-3'
-        errorMessage={
-          <div className='flex gap-1 items-center'>
-            <CancelIcon /> Required
-          </div>
-        }
-        labelContent={
-          <div className='flex-grow'>
-            Remember username
-          </div>
-        }
-        name='rememberMe'
-        onChange={onCheckToggleChange}
-      />
+      <Typography
+        className='font-bold mb-5'
+        level='h1'
+        size='4xl'
+      >
+        Inputs
+      </Typography>
+
+      {/* TextInput section */}
       <div>
-        <div>Select a role</div>
-        <div
-          className='flex gap-2'
+        <Typography
+          className='mb-4'
+          level='h2'
+          size='3xl'
         >
-          <Radio
-            containerClassName='flex-row-reverse gap-3'
-            labelContent={
-              <div className='flex-grow'>
-                Admin
+          TextInput
+        </Typography>
+
+        {/* Overview section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            Overview
+          </Typography>
+          <TextInput
+            afterInput={
+              <div className='pr-3'>
+                <CheckmarkFilledIcon />
               </div>
             }
-            name='role'
-            onChange={onInputChange}
-            checked={formState.role === 'admin'}
-            value='admin'
-          />
-          <Radio
-            containerClassName='flex-row-reverse gap-3'
-            labelContent={
-              <div className='flex-grow'>
-                Customer
+            beforeInput={
+              <div className='pl-3'>
+                <UserIcon />
               </div>
             }
-            name='role'
+            autoComplete={'off'}
+            labelContent={(<div className='flex items-center gap-2'><UserIcon /> Username</div>)}
+            name='username'
             onChange={onInputChange}
-            checked={formState.role === 'customer'}
-            value='customer'
+            placeholder='E.g.: Iudex, Soren, ...'
+            spellCheck={false}
+            value={formState.username}
           />
         </div>
-      </div>
-      <DateTimePicker
-        clearable
-        labelContent='Birthdate'
-        name='birthdate'
-        onChange={onDateTimePickerChange}
-        placeholderText='Set your birthdate'
-        todayButton={(
-          <Button
-            className='btn-ghost !py-2 w-full'
+        {/* End of Overview section */}
+
+        {/* States section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
           >
-            Today
-          </Button>
-        )}
-        value={formState.birthdate}
-      />
-      <DateTimePicker
-        clearable
-        labelContent='Booking'
-        name='bookingDate'
-        onChange={onDateTimePickerChange}
-        placeholderText='Set your booking'
-        selectsRange={true}
-        todayButton={(
-          <Button
-            className='btn-ghost !py-2 w-full'
-          >
-            Today
-          </Button>
-        )}
-        value={formState.bookingDate}
-      />
-      <DropdownSelect
-        clearable
-        labelContent='Playlist'
-        lightBackground
-        name='playlist'
-        onChange={onSelectChange}
-        options={playlists}
-        placeholder='Select a playlist'
-        value={formState.playlist}
-      />
-      <DropdownSelect
-        clearable
-        labelContent='Playlist (Readonly)'
-        lightBackground
-        name='playlist'
-        onChange={onSelectChange}
-        options={playlists}
-        placeholder='Select a playlist'
-        readonly
-        value={formState.playlist}
-      />
-      <DropdownSelect
-        clearable
-        labelContent='Playlist (Grouped)'
-        name='playlistGrouped'
-        onChange={onSelectChange}
-        options={playlistsGrouped}
-        placeholder='Select a playlist'
-        value={formState.playlistGrouped}
-      />
-      <DropdownSelect
-        clearable
-        filterable
-        labelContent='Playlist (Grouped)'
-        lightBackground
-        name='playlistGrouped'
-        onChange={onSelectChange}
-        options={playlistsGrouped}
-        placeholder='Select a playlist'
-        value={formState.playlistGrouped}
-      />
-      <DropdownSelect
-        errorMessage={
-          <div className='flex gap-1 items-center'>
-            <CancelIcon /> Required
-          </div>
-        }
-        filterable
-        labelContent='Car brand'
-        name='carBrand'
-        onChange={onSelectChange}
-        options={carBrands}
-        placeholder='Select a car brand'
-        value={formState.carBrand}
-      />
-      <DropdownSelect
-        disabled
-        errorMessage={
-          <div className='flex gap-1 items-center'>
-            <CancelIcon /> Required
-          </div>
-        }
-        filterable
-        labelContent='Car brand'
-        lightBackground
-        name='carBrand'
-        onChange={onSelectChange}
-        options={carBrands}
-        placeholder='Select a car brand'
-        value={formState.carBrand}
-      />
-      <DropdownSelect
-        clearable
-        filterable
-        labelContent='Add to playlist'
-        multiple
-        name='playlists'
-        onChange={onSelectChange}
-        options={playlists}
-        placeholder='Select at least one playlist'
-        value={formState.playlists}
-      />
-      <DropdownSelect
-        emptyList={
+            States
+          </Typography>
           <div
-            className='p-3 text-center'
+            className='flex flex-col sm:flex-row gap-3'
           >
-            No countries in this list
+            <TextInput
+              afterInput={
+                <div className='pr-3'>
+                  <CheckmarkFilledIcon />
+                </div>
+              }
+              autoComplete={'off'}
+              beforeInput={
+                <div className='pl-3'>
+                  <UserIcon />
+                </div>
+              }
+              labelContent={(<div className='flex items-center gap-2'><UserIcon /> Username (Readonly)</div>)}
+              name='username'
+              onChange={onInputChange}
+              placeholder='E.g.: Iudex, Soren, ...'
+              readOnly
+              spellCheck={false}
+              value={formState.username}
+            />
+            <TextInput
+              disabled
+              afterInput={
+                <div className='pr-3'>
+                  <CheckmarkFilledIcon />
+                </div>
+              }
+              autoComplete={'off'}
+              beforeInput={
+                <div className='pl-3'>
+                  <UserIcon />
+                </div>
+              }
+              labelContent={(<div className='flex items-center gap-2'><UserIcon /> Username (Disabled)</div>)}
+              name='username'
+              onChange={onInputChange}
+              placeholder='E.g.: Iudex, Soren, ...'
+              spellCheck={false}
+              value={formState.username}
+            />
+            <TextInput
+              afterInput={
+                <div className='pr-3'>
+                  <ForwardArrowIcon />
+                </div>
+              }
+              autoComplete={'off'}
+              errorMessage={
+                <div className='flex gap-1 items-center'>
+                  <CancelIcon /> Required
+                </div>
+              }
+              labelContent={'Username (Error)'}
+              name='username'
+              onChange={onInputChange}
+              placeholder='E.g.: Iudex, Soren, ...'
+              value={formState.username}
+            />
           </div>
-        }
-        labelContent='Country'
-        lightBackground
-        name='country'
-        onChange={onSelectChange}
-        options={[]}
-        placeholder='Select a country'
-        value={formState.country}
-      />
+        </div>
+        {/* End of States section */}
+
+        {/* Types section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            Types
+          </Typography>
+          <div
+            className='flex flex-col sm:flex-row flex-wrap gap-3'
+          >
+            <div>
+              <Typography
+                className='mb-3'
+                level='h4'
+                size='xl'
+              >
+                Text
+              </Typography>
+              <TextInput
+                afterInput={
+                  <div className='pr-3'>
+                    <CheckmarkFilledIcon />
+                  </div>
+                }
+                beforeInput={
+                  <div className='pl-3'>
+                    <UserIcon />
+                  </div>
+                }
+                autoComplete={'off'}
+                labelContent={(<div className='flex items-center gap-2'><UserIcon /> Username</div>)}
+                name='username'
+                onChange={onInputChange}
+                placeholder='E.g.: Iudex, Soren, ...'
+                spellCheck={false}
+                value={formState.username}
+              />
+            </div>
+            <div>
+              <Typography
+                className='mb-3'
+                level='h4'
+                size='xl'
+              >
+                Password
+              </Typography>
+              <TextInput
+                afterInput={
+                  <div className='pr-3'>
+                    <CheckmarkFilledIcon />
+                  </div>
+                }
+                beforeInput={
+                  <div className='pl-3'>
+                    <PasswordIcon />
+                  </div>
+                }
+                autoComplete={'off'}
+                id='password'
+                labelContent={(<div className='flex items-center gap-2'><PasswordIcon /> Password</div>)}
+                name='password'
+                onChange={onInputChange}
+                spellCheck={false}
+                type='password'
+                value={formState.password}
+              />
+            </div>
+          </div>
+        </div>
+        {/* End of Types section */}
+      </div>
+      {/* End of TextInput section */}
+
+      {/* Checkbox section */}
+      <div
+        className='mb-5'
+      >
+        <Typography
+          className='mb-4'
+          level='h2'
+          size='3xl'
+        >
+          Checkbox
+        </Typography>
+
+        <Checkbox
+          checked={formState.rememberMe}
+          containerClassName='flex-row-reverse gap-3'
+          errorMessage={
+            <div className='flex gap-1 items-center'>
+              <CancelIcon /> Required
+            </div>
+          }
+          labelContent={
+            <div className='flex-grow'>
+              Remember username
+            </div>
+          }
+          name='rememberMe'
+          onChange={onCheckToggleChange}
+        />
+      </div>
+      {/* End of Checkbox section */}
+
+      {/* Radio section */}
+      <div
+        className='mb-5'
+      >
+        <Typography
+          className='mb-4'
+          level='h2'
+          size='3xl'
+        >
+          Radio
+        </Typography>
+
+        <div>
+          <div>Select a role</div>
+          <div
+            className='flex gap-2'
+          >
+            <Radio
+              containerClassName='flex-row-reverse gap-3'
+              labelContent={
+                <div className='flex-grow'>
+                  Admin
+                </div>
+              }
+              name='role'
+              onChange={onInputChange}
+              checked={formState.role === 'admin'}
+              value='admin'
+            />
+            <Radio
+              containerClassName='flex-row-reverse gap-3'
+              labelContent={
+                <div className='flex-grow'>
+                  Customer
+                </div>
+              }
+              name='role'
+              onChange={onInputChange}
+              checked={formState.role === 'customer'}
+              value='customer'
+            />
+          </div>
+        </div>
+      </div>
+      {/* End of Radio section */}
+
+      {/* DropdownSelect section */}
+      <div
+        className='mb-5'
+      >
+        <Typography
+          className='mb-4'
+          level='h2'
+          size='3xl'
+        >
+          DropdownSelect
+        </Typography>
+
+        {/* Overview section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            Overview
+          </Typography>
+          <DropdownSelect
+            clearable
+            labelContent='Playlist'
+            name='playlist'
+            onChange={onSelectChange}
+            options={playlists}
+            placeholder='Select a playlist'
+            value={formState.playlist}
+          />
+        </div>
+        {/* End of Overview section */}
+
+        {/* Multiple section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            Multiple
+          </Typography>
+          <DropdownSelect
+            clearable
+            labelContent='Add to playlist'
+            multiple
+            name='playlists'
+            onChange={onSelectChange}
+            options={playlists}
+            placeholder='Select at least one playlist'
+            value={formState.playlists}
+          />
+        </div>
+        {/* End of Multiple section */}
+
+        {/* Filterable section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            Filterable
+          </Typography>
+          <DropdownSelect
+            filterable
+            labelContent='Car brand'
+            name='carBrand'
+            onChange={onSelectChange}
+            options={carBrands}
+            placeholder='Select a car brand'
+            value={formState.carBrand}
+          />
+        </div>
+        {/* End of Filterable section */}
+
+        {/* Grouped options */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            Grouped options
+          </Typography>
+          <DropdownSelect
+            clearable
+            labelContent='Playlist (Grouped)'
+            name='playlistGrouped'
+            onChange={onSelectChange}
+            options={playlistsGrouped}
+            placeholder='Select a playlist'
+            value={formState.playlistGrouped}
+          />
+        </div>
+        {/* End of Grouped options */}
+
+        {/* Clearable section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            Clearable
+          </Typography>
+          <DropdownSelect
+            clearable
+            labelContent='Playlist (Readonly)'
+            name='playlist'
+            onChange={onSelectChange}
+            options={playlists}
+            placeholder='Select a playlist'
+            value={formState.playlist}
+          />
+        </div>
+        {/* End of Clearable section */}
+
+        {/* States section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            States
+          </Typography>
+          <div
+            className='flex flex-col sm:flex-row gap-3'
+          >
+            <DropdownSelect
+              labelContent='Playlist (Readonly)'
+              name='playlist'
+              onChange={onSelectChange}
+              options={playlists}
+              placeholder='Select a playlist'
+              readonly
+              value={formState.playlist}
+            />
+            <DropdownSelect
+              disabled
+              labelContent='Car brand'
+              name='carBrand'
+              onChange={onSelectChange}
+              options={carBrands}
+              placeholder='Select a car brand'
+              value={formState.carBrand}
+            />
+            <DropdownSelect
+              errorMessage={
+                <div className='flex gap-1 items-center'>
+                  <CancelIcon /> Required
+                </div>
+              }
+              filterable
+              labelContent='Car brand'
+              name='carBrand'
+              onChange={onSelectChange}
+              options={carBrands}
+              placeholder='Select a car brand'
+              value={formState.carBrand}
+            />
+          </div>
+        </div>
+        {/* End of States section */}
+
+        {/* Empty list section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            Empty list
+          </Typography>
+          <DropdownSelect
+            emptyList={
+              <div
+                className='p-3 text-center'
+              >
+                No countries in this list
+              </div>
+            }
+            labelContent='Country'
+            lightBackground
+            name='country'
+            onChange={onSelectChange}
+            options={[]}
+            placeholder='Select a country'
+            value={formState.country}
+          />
+        </div>
+        {/* End of Empty list section */}
+      </div>
+      {/* End of DropdownSelect section */}
+
+      {/* DateTimePicker section */}
+      <div
+        className='mb-5'
+      >
+        <Typography
+          className='mb-4'
+          level='h2'
+          size='3xl'
+        >
+          DateTimePicker
+        </Typography>
+
+        {/* Overview section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            Overview
+          </Typography>
+          <DateTimePicker
+            clearable
+            labelContent='Birthdate'
+            name='birthdate'
+            onChange={onDateTimePickerChange}
+            placeholderText='Set your birthdate'
+            todayButton={(
+              <Button
+                className='btn-ghost !py-2 w-full'
+              >
+                Today
+              </Button>
+            )}
+            value={formState.birthdate}
+          />
+          <DateTimePicker
+            clearable
+            labelContent='Booking'
+            name='bookingDate'
+            onChange={onDateTimePickerChange}
+            placeholderText='Set your booking'
+            selectsRange={true}
+            todayButton={(
+              <Button
+                className='btn-ghost !py-2 w-full'
+              >
+                Today
+              </Button>
+            )}
+            value={formState.bookingDate}
+          />
+        </div>
+        {/* End of Overview section */}
+      </div>
+      {/* End of DateTimePicker */}
+
+
 
     </div>
   )
