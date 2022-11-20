@@ -18,7 +18,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   onChange,
   onFocus,
   placeholder,
-  staticLabel = false,
+  staticLabel = true,
   ...props
 }, ref) => {
 
