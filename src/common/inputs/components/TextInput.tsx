@@ -10,8 +10,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   beforeInput,
   className,
   errorMessage,
+  inputClassName,
   inputSize = 'md',
-  showAfterAndBeforeInput = false,
   labelContent,
   lightBackground = false,
   onBlur,
@@ -56,13 +56,13 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   }
 
   const addFocusClasses = () => {
-    if (staticLabel || !labelContent || !labelContainerRef.current || inputRef.current?.value || showAfterAndBeforeInput) return;
+    if (staticLabel || !labelContent || !labelContainerRef.current || inputRef.current?.value) return;
 
     labelContainerRef.current.classList.add('!px-3', labelTranslateClass)
   }
 
   const removeFocusClasses = () => {
-    if (staticLabel || !labelContent || !labelContainerRef.current || showAfterAndBeforeInput) return;
+    if (staticLabel || !labelContent || !labelContainerRef.current) return;
 
     labelContainerRef.current.classList.remove('!px-3', labelTranslateClass)
   }
@@ -108,12 +108,12 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
     }
   )
 
-  const inputClassName = classNames(
+  const inputInternalClassName = classNames(
     'bg-transparent border-0 flex-grow h-full input !outline-none px-3 w-full',
     {
-      "cursor-pointer": showAfterAndBeforeInput,
       "text-black": props.disabled
-    }
+    },
+    inputClassName
   )
 
   const labelContainerClassName = classNames(
@@ -127,7 +127,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   const sideComponentsClassName = classNames(
     'flex items-center justify-center relative',
     {
-      'opacity-0': !hasValue && !hasFocus && !staticLabel && labelContent && !showAfterAndBeforeInput,
+      'opacity-0': !hasValue && !hasFocus && !staticLabel && labelContent,
       '!bg-base-200 cursor-not-allowed opacity-50': props.disabled
     }
   )
@@ -170,11 +170,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
           }
           <input
             {...props}
-            className={inputClassName}
+            className={inputInternalClassName}
             onBlur={onBlurInput}
             onChange={onInputChange}
             onFocus={onFocusInput}
-            placeholder={(hasFocus || staticLabel || !labelContent || showAfterAndBeforeInput) ? placeholder : ''}
+            placeholder={(hasFocus || staticLabel || !labelContent) ? placeholder : ''}
             ref={mergeRefs(inputRef, ref)}
           />
           {

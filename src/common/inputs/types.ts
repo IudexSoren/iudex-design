@@ -88,7 +88,7 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement>, Check
 }
 
 export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement>, InputBaseProps {
-  showAfterAndBeforeInput?: boolean
+  inputClassName?: string
   staticLabel?: boolean
 }
 
