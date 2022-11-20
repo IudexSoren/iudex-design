@@ -31,7 +31,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   }
 
   const className = classNames(
-    "btn h-auto min-h-fit focus:outline-none py-0 relative",
+    "btn h-auto min-h-fit focus:outline-none py-0 relative focus:!scale-100",
     props.className
   );
 
