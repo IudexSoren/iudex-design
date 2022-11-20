@@ -77,9 +77,15 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(({
           />
         </div>
       </div>
-      <ErrorMessage>
-        {errorMessage}
-      </ErrorMessage>
+      {
+        typeof errorMessage !== 'boolean' ?
+          (
+            <ErrorMessage>
+              {errorMessage}
+            </ErrorMessage>
+          ) :
+          null
+      }
     </AsComponent>
   )
 })

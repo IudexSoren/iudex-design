@@ -76,9 +76,15 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({
           />
         </div>
       </AsComponent>
-      <ErrorMessage>
-        {errorMessage}
-      </ErrorMessage>
+      {
+        typeof errorMessage !== 'boolean' ?
+          (
+            <ErrorMessage>
+              {errorMessage}
+            </ErrorMessage>
+          ) :
+          null
+      }
     </div>
   )
 })

@@ -194,11 +194,13 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
         value={value}
       />
       {
-        errorMessage && (
-          <ErrorMessage className='mt-1'>
-            {(typeof errorMessage !== 'boolean') ? errorMessage : ''}
-          </ErrorMessage>
-        )
+        typeof errorMessage !== 'boolean' ?
+          (
+            <ErrorMessage className='mt-1'>
+              {errorMessage}
+            </ErrorMessage>
+          ) :
+          null
       }
     </div>
   )
