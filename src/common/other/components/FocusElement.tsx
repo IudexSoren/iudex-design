@@ -6,13 +6,13 @@ export interface FocusElementProps {
   hasFocus: boolean
 }
 
-export const FocusElement: React.FC<FocusElementProps> = ({
+export const FocusElement = React.forwardRef<HTMLDivElement, FocusElementProps>(({
   className,
   hasFocus = false
-}) => {
+}, ref) => {
 
   const focusElementClassName = classNames(
-    'absolute bg-transparent border-2 border-transparent -inset-px pointer-events-none transition',
+    'absolute bg-transparent border-2 border-transparent -inset-px overflow-hidden pointer-events-none transition',
     {
       '!border-primary': hasFocus
     },
@@ -22,6 +22,7 @@ export const FocusElement: React.FC<FocusElementProps> = ({
   return (
     <div
       className={focusElementClassName}
+      ref={ref}
     />
   )
-}
+});

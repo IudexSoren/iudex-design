@@ -1,18 +1,20 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 import { mergeRefs } from '@common/other/merge-refs'
 import { FocusElement } from '@common/other/components/FocusElement'
 import { ButtonProps } from '../types'
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   onBlur,
   onFocus,
+  onMouseDown,
   ...props
 }, ref) => {
 
   const [hasFocus, setHasFocus] = React.useState(false);
 
   const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const focusElementRef = React.useRef<HTMLDivElement>(null);
 
   const onBlurButton = (event: React.FocusEvent<HTMLButtonElement>) => {
     setHasFocus(false);
@@ -30,13 +32,44 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     }
   }
 
+  const onMouseDownOnButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (focusElementRef.current) {
+      const x = event.clientX - focusElementRef.current.offsetLeft;
+      const y = event.clientY - focusElementRef.current.offsetTop;
+      const ripples = document.createElement('span');
+      ripples.classList.add(
+        'absolute',
+        'animate-ripple',
+        'bg-black/30',
+        'pointer-event-none',
+        'rounded-full',
+        '-translate-x-1/2',
+        '-translate-y-1/2',
+      );
+
+      ripples.style.left = x + 'px';
+      ripples.style.top = y + 'px';
+
+      focusElementRef.current?.appendChild(ripples);
+
+      setTimeout(() => {
+        ripples.remove();
+      }, 800);
+    }
+
+    if (onMouseDown) {
+      onMouseDown(event);
+    }
+  }
+
   const className = classNames(
-    "btn h-auto min-h-fit focus:outline-none py-0 relative focus:!scale-100",
+    "btn h-auto min-h-fit focus:outline-none overflow-hidden py-0 relative focus:!scale-100",
     props.className
   );
 
   const borderClasses = className?.split(' ').filter(cl => cl.includes('border') || cl.includes('rounded'));
   const focusElementClassName = classNames(
+    '!inset-0',
     borderClasses
   );
 
@@ -46,12 +79,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       className={className}
       onBlur={onBlurButton}
       onFocus={onFocusButton}
+      onMouseDown={onMouseDownOnButton}
       ref={mergeRefs<HTMLButtonElement>(ref, buttonRef)}
     >
       {props.children}
       <FocusElement
         className={focusElementClassName}
         hasFocus={hasFocus}
+        ref={focusElementRef}
       />
     </button>
   );

@@ -4,9 +4,25 @@ module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      animation: {
+        ripple: "ripple 0.8s linear infinite",
+      },
       fontFamily: {
         "be-vietnam": ["Be Vietnam", "sans-serif"],
         "ibm-plex-sans": ["IBM Plex Sans", "sans-serif"],
+      },
+      keyframes: {
+        ripple: {
+          "0%": {
+            height: "0px",
+            width: "0px",
+          },
+          "100%": {
+            height: "500px",
+            opacity: 0,
+            width: "500px",
+          },
+        },
       },
     },
   },
