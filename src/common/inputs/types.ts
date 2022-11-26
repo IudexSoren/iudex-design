@@ -1,5 +1,6 @@
 import React, { InputHTMLAttributes, AllHTMLAttributes, ReactElement } from "react"
 import { ReactDatePickerProps, ReactDatePickerCustomHeaderProps } from 'react-datepicker'
+import { ReactSliderProps, } from "react-slider"
 import { BackgroundAttr, BASIC_SIZES } from "@common/other/types"
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement>, CheckableInputAttr, ErrorMessageAttr, LabelContentAttr {
@@ -87,6 +88,24 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement>, Check
 
 }
 
+// #region Slider
+export interface SliderProps extends ErrorMessageAttr, LabelContentAttr, Omit<ReactSliderProps, 'defaultValue' | 'value'> {
+  value: number[]
+}
+
+export interface SliderMarkProps {
+
+}
+
+export interface SliderThumbProps extends SliderStateProps {
+  valueNow: number
+}
+
+export interface SliderTrackProps extends SliderStateProps {
+  className?: string
+}
+// #endregion
+
 export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement>, InputBaseProps {
   inputClassName?: string
   staticLabel?: boolean
@@ -137,4 +156,9 @@ export interface InputSizeAttr {
 
 export interface LabelContentAttr {
   labelContent?: ReactElement | string
+}
+
+export interface SliderStateProps {
+  index: number
+  value: number | string | readonly string[]
 }

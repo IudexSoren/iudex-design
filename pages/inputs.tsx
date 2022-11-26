@@ -1,7 +1,7 @@
 import React from 'react'
 import { NextPage } from 'next'
 import { CancelIcon, CheckmarkFilledIcon, ForwardArrowIcon, PasswordIcon, UserIcon } from '@common/icons'
-import { Checkbox, DateTimePicker, DropdownSelect, DropdownSelectEvent, Radio, TextInput, DropdownSelectOptionProps, DateTimePickerEvent } from '@common/inputs'
+import { Checkbox, DateTimePicker, DropdownSelect, DropdownSelectEvent, Radio, Slider, TextInput, DropdownSelectOptionProps, DateTimePickerEvent } from '@common/inputs'
 import { Typography } from '@common/typographies'
 import { Button } from '@common/buttons'
 import { DropdownSelectGroupOptionProps } from '@common/inputs/types'
@@ -374,6 +374,9 @@ const Inputs: NextPage = () => {
       </div>
       {/* End of TextInput section */}
 
+      {/* NumberInput section */}
+      {/* End of NumberInput section */}
+
       {/* Checkbox section */}
       <div
         className='mb-5'
@@ -667,7 +670,7 @@ const Inputs: NextPage = () => {
       >
         <Typography
           className='mb-4'
-          level='h2'
+          level='h3'
           size='3xl'
         >
           DateTimePicker
@@ -713,12 +716,35 @@ const Inputs: NextPage = () => {
                 Today
               </Button>
             )}
-            value={formState.bookingDate}
+            value={formState.bookingDate as [null | Date, null | Date]}
           />
         </div>
         {/* End of Overview section */}
       </div>
       {/* End of DateTimePicker */}
+
+      {/* Slider section */}
+      {/* <div
+        className='mb-5'
+      >
+        <Typography
+          className='mb-4'
+          level='h3'
+          size='3xl'
+        >
+          Slider
+        </Typography>
+        <Slider
+          errorMessage={
+            <div className='flex gap-1 items-center'>
+              <CancelIcon /> Required
+            </div>
+          }
+          labelContent='Amount'
+          value={[26, 47, 70]}
+        />
+      </div> */}
+      {/* End of Slider section */}
 
 
 
