@@ -5,8 +5,8 @@ import { TextInput } from './TextInput'
 export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(({
   max,
   min,
+  onBeforeInput,
   onChange,
-  onKeyDown,
   value = 0,
   ...props
 }, ref) => {
@@ -23,16 +23,23 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     onChange(event);
   }
 
-  const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!onKeyDown) return;
+  const onBeforeInputHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    const compositionEvent = event as unknown as CompositionEvent;
+    const { data } = compositionEvent;
 
-    onKeyDown(event);
+    if (isNaN(Number(data))) {
+      event.preventDefault();
+    }
+
+    if (!onBeforeInput) return;
+
+    onBeforeInput(event);
   }
 
   return (
     <TextInput
       onChange={onInputChange}
-      onKeyDown={onInputKeyDown}
+      onBeforeInput={onBeforeInputHandler}
       ref={ref}
       {...props}
     />
