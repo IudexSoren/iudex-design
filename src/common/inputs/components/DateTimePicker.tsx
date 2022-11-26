@@ -9,14 +9,14 @@ import { DateTimePickerProps } from '../types'
 import "react-datepicker/dist/react-datepicker.css"
 
 export const DateTimePicker: React.FC<DateTimePickerProps> = ({
-  afterInput,
-  beforeInput,
   clearable,
   disabled = false,
   labelContent,
   lightBackground = false,
   name,
   onChange,
+  prefixInput,
+  suffixInput,
   value,
   ...props
 }) => {
@@ -54,11 +54,11 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
       calendarClassName='!border-zinc-300 !font-be-vietnam !rounded-none shadow-md '
       customInput={
         <TextInput
-          afterInput={
+          suffixInput={
             <div className='flex h-full items-center'>
               {
                 <React.Fragment>
-                  {afterInput}
+                  {suffixInput}
                   {
                     (!!value && clearable) ?
                       (
@@ -77,7 +77,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
               </div>
             </div>
           }
-          beforeInput={beforeInput}
+          prefixInput={prefixInput}
           labelContent={labelContent}
         />
       }

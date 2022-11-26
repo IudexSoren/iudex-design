@@ -6,10 +6,10 @@ import {
   ChevronUpIcon,
   CloseIcon
 } from '@common/icons'
-import { DropdownSelectAfterInputProps } from '@common/inputs/types'
+import { DropdownSelectSuffixInputProps } from '@common/inputs/types'
 
-export const DropdownSelectAfterInput: React.FC<DropdownSelectAfterInputProps> = ({
-  afterInput,
+export const DropdownSelectSuffixInput: React.FC<DropdownSelectSuffixInputProps> = ({
+  suffixInput,
   clearable,
   disabled,
   handleClearSelection,
@@ -31,7 +31,7 @@ export const DropdownSelectAfterInput: React.FC<DropdownSelectAfterInputProps> =
     <div className='flex h-full items-center'>
       {
         <React.Fragment>
-          {afterInput}
+          {suffixInput}
           {
             (hasValue && clearable) ?
               (

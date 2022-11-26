@@ -6,8 +6,8 @@ import { TextInputProps } from '../types'
 import { FocusElement } from '@common/other/components/FocusElement'
 
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
-  afterInput,
-  beforeInput,
+  suffixInput,
+  prefixInput,
   className,
   errorMessage,
   inputClassName,
@@ -159,12 +159,12 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
           onClick={handleClickContainer}
         >
           {
-            !!beforeInput &&
+            !!prefixInput &&
             (
               <div
                 className={sideComponentsClassName}
               >
-                {beforeInput}
+                {prefixInput}
               </div>
             )
           }
@@ -178,12 +178,12 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
             ref={mergeRefs(inputRef, ref)}
           />
           {
-            !!afterInput &&
+            !!suffixInput &&
             (
               <div
                 className={sideComponentsClassName}
               >
-                {afterInput}
+                {suffixInput}
               </div>
             )
           }

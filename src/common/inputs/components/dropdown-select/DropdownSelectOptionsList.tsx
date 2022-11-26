@@ -109,7 +109,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
                     className='p-3'
                   >
                     <TextInput
-                      afterInput={
+                      suffixInput={
                         <Button
                           className='btn-sm btn-ghost h-full '
                           onClick={handleClearFilterText}
@@ -118,7 +118,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
                         </Button>
                       }
                       autoComplete={'off'}
-                      beforeInput={
+                      prefixInput={
                         <div className='pl-3'>
                           <SearchIcon />
                         </div>

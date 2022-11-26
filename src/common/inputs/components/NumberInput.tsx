@@ -5,7 +5,7 @@ import { TextInput } from './TextInput'
 export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(({
   max,
   min,
-  onChange,beforeInput,
+  onChange,
   onKeyDown,
   value = 0,
   ...props

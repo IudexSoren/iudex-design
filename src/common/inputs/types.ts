@@ -36,8 +36,8 @@ export interface DropdownSelectProps extends InputBaseProps, ClearableInputAttr 
   virtualized?: boolean
 }
 
-export interface DropdownSelectAfterInputProps extends BackgroundAttr, DisabledInputAttr {
-  afterInput?: ReactElement
+export interface DropdownSelectSuffixInputProps extends BackgroundAttr, DisabledInputAttr {
+  suffixInput?: ReactElement
   clearable?: boolean
   handleClearSelection: (event: React.MouseEvent<HTMLButtonElement>) => void
   hasValue: boolean
@@ -130,14 +130,14 @@ export interface DropdownSelectEvent {
 }
 
 // Generic Input
-export interface InputBaseProps extends BackgroundAttr, BeforeAndAfterInputAttrs, DisabledInputAttr, ErrorMessageAttr, InputSizeAttr, LabelContentAttr {
+export interface InputBaseProps extends BackgroundAttr, PrefixAndSuffixInputAttrs, DisabledInputAttr, ErrorMessageAttr, InputSizeAttr, LabelContentAttr {
 
 }
 
 // Generic types
-export interface BeforeAndAfterInputAttrs {
-  afterInput?: ReactElement
-  beforeInput?: ReactElement
+export interface PrefixAndSuffixInputAttrs {
+  suffixInput?: ReactElement
+  prefixInput?: ReactElement
 }
 
 export interface CheckableInputAttr {

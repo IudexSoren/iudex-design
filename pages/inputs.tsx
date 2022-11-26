@@ -200,12 +200,12 @@ const Inputs: NextPage = () => {
             Overview
           </Typography>
           <TextInput
-            afterInput={
+            suffixInput={
               <div className='pr-3'>
                 <CheckmarkFilledIcon />
               </div>
             }
-            beforeInput={
+            prefixInput={
               <div className='pl-3'>
                 <UserIcon />
               </div>
@@ -236,13 +236,13 @@ const Inputs: NextPage = () => {
             className='flex flex-col sm:flex-row gap-3'
           >
             <TextInput
-              afterInput={
+              suffixInput={
                 <div className='pr-3'>
                   <CheckmarkFilledIcon />
                 </div>
               }
               autoComplete={'off'}
-              beforeInput={
+              prefixInput={
                 <div className='pl-3'>
                   <UserIcon />
                 </div>
@@ -257,13 +257,13 @@ const Inputs: NextPage = () => {
             />
             <TextInput
               disabled
-              afterInput={
+              suffixInput={
                 <div className='pr-3'>
                   <CheckmarkFilledIcon />
                 </div>
               }
               autoComplete={'off'}
-              beforeInput={
+              prefixInput={
                 <div className='pl-3'>
                   <UserIcon />
                 </div>
@@ -276,7 +276,7 @@ const Inputs: NextPage = () => {
               value={formState.username}
             />
             <TextInput
-              afterInput={
+              suffixInput={
                 <div className='pr-3'>
                   <ForwardArrowIcon />
                 </div>
@@ -320,12 +320,12 @@ const Inputs: NextPage = () => {
                 Text
               </Typography>
               <TextInput
-                afterInput={
+                suffixInput={
                   <div className='pr-3'>
                     <CheckmarkFilledIcon />
                   </div>
                 }
-                beforeInput={
+                prefixInput={
                   <div className='pl-3'>
                     <UserIcon />
                   </div>
@@ -348,12 +348,12 @@ const Inputs: NextPage = () => {
                 Password
               </Typography>
               <TextInput
-                afterInput={
+                suffixInput={
                   <div className='pr-3'>
                     <CheckmarkFilledIcon />
                   </div>
                 }
-                beforeInput={
+                prefixInput={
                   <div className='pl-3'>
                     <PasswordIcon />
                   </div>

@@ -2,13 +2,11 @@ import React from 'react'
 import { useClickOutside } from '@mantine/hooks'
 import { TextInput } from './TextInput'
 import { ErrorMessage } from './ErrorMessage'
-import { DropdownSelectAfterInput, DropdownSelectOptionsList } from './dropdown-select';
+import { DropdownSelectSuffixInput, DropdownSelectOptionsList } from './dropdown-select';
 import { DropdownSelectGroupOptionProps, DropdownSelectOptionProps, DropdownSelectProps } from '../types'
 import classNames from 'classnames';
 
 export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectProps>(({
-  afterInput,
-  beforeInput,
   className,
   clearable = false,
   disabled = false,
@@ -24,7 +22,9 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
   onChange,
   options = [],
   placeholder,
+  prefixInput,
   readonly = false,
+  suffixInput,
   value
 }, ref) => {
 
@@ -135,9 +135,9 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
         tabIndex={disabled ? -1 : 0}
       >
         <TextInput
-          afterInput={
-            <DropdownSelectAfterInput
-              afterInput={afterInput}
+          suffixInput={
+            <DropdownSelectSuffixInput
+              suffixInput={suffixInput}
               clearable={clearable}
               disabled={disabled}
               handleClearSelection={handleClearSelection}
@@ -147,7 +147,7 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
               readonly={readonly}
             />
           }
-          beforeInput={
+          prefixInput={
             <React.Fragment>
               {
                 multiple && (
@@ -160,7 +160,7 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
                   </div>
                 )
               }
-              {beforeInput}
+              {prefixInput}
             </React.Fragment>
           }
           autoComplete="off"
