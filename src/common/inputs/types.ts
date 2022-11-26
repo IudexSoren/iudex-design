@@ -84,8 +84,11 @@ export interface ErrorMessageProps extends AllHTMLAttributes<HTMLDivElement> {
   children?: ReactElement | string
 }
 
-export interface NumberInputProps {
-
+export interface NumberInputProps extends InputHTMLAttributes<HTMLInputElement>, InputBaseProps {
+  max?: number
+  min?: number
+  step?: number
+  value?: number
 }
 
 export interface RadioProps extends InputHTMLAttributes<HTMLInputElement>, CheckableInputAttr, ErrorMessageAttr, LabelContentAttr {

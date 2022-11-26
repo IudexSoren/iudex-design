@@ -1,7 +1,7 @@
 import React from 'react'
 import { NextPage } from 'next'
 import { CancelIcon, CheckmarkFilledIcon, ForwardArrowIcon, PasswordIcon, UserIcon } from '@common/icons'
-import { Checkbox, DateTimePicker, DropdownSelect, DropdownSelectEvent, Radio, Slider, TextInput, DropdownSelectOptionProps, DateTimePickerEvent } from '@common/inputs'
+import { Checkbox, DateTimePicker, DropdownSelect, DropdownSelectEvent, Radio, Slider, TextInput, DropdownSelectOptionProps, DateTimePickerEvent, NumberInput } from '@common/inputs'
 import { Typography } from '@common/typographies'
 import { Button } from '@common/buttons'
 import { DropdownSelectGroupOptionProps } from '@common/inputs/types'
@@ -375,6 +375,21 @@ const Inputs: NextPage = () => {
       {/* End of TextInput section */}
 
       {/* NumberInput section */}
+      <div
+        className='mb-5'
+      >
+        <Typography
+          className='mb-4'
+          level='h2'
+          size='3xl'
+        >
+          NumberInput
+        </Typography>
+
+        <NumberInput
+          labelContent='Set limit'
+        />
+      </div>
       {/* End of NumberInput section */}
 
       {/* Checkbox section */}

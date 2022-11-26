@@ -2,6 +2,7 @@ export { Checkbox } from './components/Checkbox';
 export { DateTimePicker } from './components/DateTimePicker';
 export { DropdownSelect } from './components/DropdownSelect';
 export { ErrorMessage } from './components/ErrorMessage';
+export { NumberInput } from './components/NumberInput';
 export { Radio } from './components/Radio';
 export { Slider } from './components/Slider';
 export { TextInput } from './components/TextInput';
