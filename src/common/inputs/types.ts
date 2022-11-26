@@ -8,7 +8,7 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement>, Ch
 }
 
 // #region DateTimePicker
-export interface DateTimePickerProps extends Omit<ReactDatePickerProps, 'name' | 'onChange' | 'selected' | 'selectsRange' | 'value'>, InputBaseProps {
+export interface DateTimePickerProps extends Omit<ReactDatePickerProps, 'name' | 'onChange' | 'selected' | 'selectsRange' | 'value'>, InputBaseProps, ClearableInputAttr {
   name: string
   onChange: (event: DateTimePickerEvent, ...args: any) => void
   selectsRange?: boolean
@@ -21,7 +21,7 @@ export interface DateTimePickerHeaderProps extends ReactDatePickerCustomHeaderPr
 // #endregion
 
 // #region DropdownSelect
-export interface DropdownSelectProps extends InputBaseProps {
+export interface DropdownSelectProps extends InputBaseProps, ClearableInputAttr {
   className?: string
   emptyList?: ReactElement
   filterable?: boolean
@@ -84,6 +84,10 @@ export interface ErrorMessageProps extends AllHTMLAttributes<HTMLDivElement> {
   children?: ReactElement | string
 }
 
+export interface NumberInputProps {
+
+}
+
 export interface RadioProps extends InputHTMLAttributes<HTMLInputElement>, CheckableInputAttr, ErrorMessageAttr, LabelContentAttr {
 
 }
@@ -123,7 +127,7 @@ export interface DropdownSelectEvent {
 }
 
 // Generic Input
-export interface InputBaseProps extends BackgroundAttr, BeforeAndAfterInputAttrs, ClearableInputAttr, DisabledInputAttr, ErrorMessageAttr, InputSizeAttr, LabelContentAttr {
+export interface InputBaseProps extends BackgroundAttr, BeforeAndAfterInputAttrs, DisabledInputAttr, ErrorMessageAttr, InputSizeAttr, LabelContentAttr {
 
 }
 
