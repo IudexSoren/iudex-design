@@ -1,13 +1,15 @@
 import React from 'react'
-import { mergeRefs } from '@common/other/merge-refs'
 import { NumberInputProps } from '../types'
+import { NumberInputSuffixControls } from './number-input'
 import { TextInput } from './TextInput'
 
 export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(({
   max,
   min,
   onBeforeInput,
+  showControls = true,
   step = 1,
+  suffixInput,
   value = 0,
   ...props
 }, ref) => {
@@ -47,6 +49,18 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     <TextInput
       onBeforeInput={onBeforeInputHandler}
       ref={ref}
+      suffixInput={
+        <React.Fragment>
+          {suffixInput}
+          {
+            showControls ? (
+              <NumberInputSuffixControls
+
+              />
+            ) : null
+          }
+        </React.Fragment>
+      }
       {...props}
     />
   )

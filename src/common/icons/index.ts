@@ -1,4 +1,5 @@
 export {
+  Add as AddIcon,
   ArrowRight as ForwardArrowIcon,
   Calendar as CalendarIcon,
   Close as CloseIcon,
@@ -10,5 +11,6 @@ export {
   ChevronUp as ChevronUpIcon,
   Password as PasswordIcon,
   Search as SearchIcon,
+  Subtract as SubtractIcon,
   User as UserIcon
 } from '@carbon/icons-react';

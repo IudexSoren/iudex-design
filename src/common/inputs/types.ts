@@ -87,8 +87,13 @@ export interface ErrorMessageProps extends AllHTMLAttributes<HTMLDivElement> {
 export interface NumberInputProps extends InputHTMLAttributes<HTMLInputElement>, InputBaseProps {
   max?: number
   min?: number
+  showControls?: boolean
   step?: number
   value?: number
+}
+
+export interface NumberInputSuffixControls {
+  
 }
 
 export interface RadioProps extends InputHTMLAttributes<HTMLInputElement>, CheckableInputAttr, ErrorMessageAttr, LabelContentAttr {
