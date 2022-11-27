@@ -1,4 +1,5 @@
 import React from 'react'
+import { mergeRefs } from '@common/other/merge-refs'
 import { NumberInputProps } from '../types'
 import { TextInput } from './TextInput'
 
@@ -24,10 +25,18 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
   }
 
   const onBeforeInputHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    const allowedCharacters = ['-', '.', ','];
     const compositionEvent = event as unknown as CompositionEvent;
-    const { data } = compositionEvent;
 
-    if (isNaN(Number(data))) {
+    const { currentTarget } = event;
+    let { data } = compositionEvent;
+    data = data.trim();
+
+    if (data === "" || (!allowedCharacters.includes(data) && isNaN(Number(data)))) {
+      event.preventDefault();
+    }
+
+    if (data === "-" && currentTarget.value.length > 0) {
       event.preventDefault();
     }
 
