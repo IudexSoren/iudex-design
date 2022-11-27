@@ -388,6 +388,8 @@ const Inputs: NextPage = () => {
 
         <NumberInput
           labelContent='Set limit'
+          max={5}
+          min={-6}
         />
       </div>
       {/* End of NumberInput section */}

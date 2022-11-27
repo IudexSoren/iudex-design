@@ -7,6 +7,7 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
   max,
   min,
   onBeforeInput,
+  step = 1,
   value = 0,
   ...props
 }, ref) => {
@@ -24,6 +25,16 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     }
 
     if (data === "-" && currentTarget.value.length > 0) {
+      event.preventDefault();
+    }
+
+    const numberValue = Number(currentTarget.value + data);
+
+    if (max !== undefined && numberValue > max) {
+      event.preventDefault();
+    }
+
+    if (min !== undefined && numberValue < min) {
       event.preventDefault();
     }
 
