@@ -51,6 +51,10 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
     addFocusClasses();
   }, []);
 
+  React.useEffect(() => {
+    setHasValue(!!props.value);
+  }, [props.value]);
+
   const handleClickContainer = () => {
     inputRef.current?.focus();
   }
