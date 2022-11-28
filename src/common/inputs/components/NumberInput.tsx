@@ -1,4 +1,5 @@
 import React from 'react'
+import { mergeRefs } from '@common/other/merge-refs'
 import { NumberInputProps } from '../types'
 import { NumberInputSuffixControls } from './number-input'
 import { TextInput } from './TextInput'
@@ -10,9 +11,10 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
   showControls = true,
   step = 1,
   suffixInput,
-  value = 0,
   ...props
 }, ref) => {
+
+  const innerRef = React.useRef<HTMLInputElement>(null);
 
   const onBeforeInputHandler = (event: React.FormEvent<HTMLInputElement>) => {
     const allowedCharacters = ['-', '.', ','];
@@ -45,17 +47,61 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     onBeforeInput(event);
   }
 
+  const onDecrementValue = () => {
+    const inputValue = Number(innerRef.current?.getAttribute('value'));
+
+    if (isNaN(inputValue)) return;
+
+    let newValue = inputValue - step;
+    if (min !== undefined && newValue < min) {
+      newValue = min;
+    }
+
+    innerRef.current?.setAttribute('value', newValue.toString());
+
+    console.log({ newValue })
+    dispatchChangeEvent(newValue);
+  }
+
+  const onIncrementValue = () => {
+    const inputValue = Number(innerRef.current?.getAttribute('value'));
+
+    if (isNaN(inputValue)) return;
+
+    let newValue = inputValue + step;
+    if (max !== undefined && newValue > max) {
+      newValue = max;
+    }
+
+    console.log({ newValue })
+    innerRef.current?.setAttribute('value', newValue.toString());
+
+    dispatchChangeEvent(newValue);
+  }
+
+  const dispatchChangeEvent = (newValue: number) => {
+    if (!props.onChange) return;
+
+    const event = new Event('change', { bubbles: true });
+    innerRef.current?.dispatchEvent(event);
+    (event.target as any).value = newValue;
+    props.onChange(event as unknown as React.ChangeEvent<HTMLInputElement>)
+  }
+
   return (
     <TextInput
+      autoComplete='off'
       onBeforeInput={onBeforeInputHandler}
-      ref={ref}
+      ref={mergeRefs(innerRef, ref)}
+      spellCheck={false}
       suffixInput={
         <React.Fragment>
           {suffixInput}
           {
             showControls ? (
               <NumberInputSuffixControls
-
+                onDecrementValue={onDecrementValue}
+                onIncrementValue={onIncrementValue}
               />
             ) : null
           }

@@ -2,8 +2,12 @@ import React from 'react'
 import classNames from 'classnames'
 import { AddIcon, SubtractIcon } from '@common/icons'
 import { Button } from '@common/buttons'
+import { NumberInputSuffixControlsProps } from '@common/inputs/types'
 
-export const NumberInputSuffixControls: React.FC = () => {
+export const NumberInputSuffixControls: React.FC<NumberInputSuffixControlsProps> = ({
+  onDecrementValue,
+  onIncrementValue
+}) => {
 
   const buttonClassName = classNames(
     'btn-sm h-full',
@@ -17,11 +21,13 @@ export const NumberInputSuffixControls: React.FC = () => {
     <div className='flex h-full items-center'>
       <Button
         className={buttonClassName}
+        onClick={onDecrementValue}
       >
         <SubtractIcon />
       </Button>
       <Button
         className={buttonClassName}
+        onClick={onIncrementValue}
       >
         <AddIcon />
       </Button>

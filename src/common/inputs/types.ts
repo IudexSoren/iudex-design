@@ -92,8 +92,9 @@ export interface NumberInputProps extends InputHTMLAttributes<HTMLInputElement>,
   value?: number
 }
 
-export interface NumberInputSuffixControls {
-  
+export interface NumberInputSuffixControlsProps {
+  onIncrementValue: () => void
+  onDecrementValue: () => void
 }
 
 export interface RadioProps extends InputHTMLAttributes<HTMLInputElement>, CheckableInputAttr, ErrorMessageAttr, LabelContentAttr {
@@ -132,6 +133,10 @@ export interface DateTimePickerEvent {
 export interface DropdownSelectEvent {
   name: string
   value: any
+}
+
+export interface NumberInputEvent {
+  target: HTMLInputElement
 }
 
 // Generic Input

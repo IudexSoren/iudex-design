@@ -13,6 +13,7 @@ const Inputs: NextPage = () => {
     bookingDate: [null, null],
     carBrand: null,
     country: null,
+    limit: 10,
     password: '',
     playlist: null,
     playlistGrouped: null,
@@ -390,6 +391,9 @@ const Inputs: NextPage = () => {
           labelContent='Set limit'
           max={5}
           min={-6}
+          name="limit"
+          onChange={onInputChange}
+          step={2}
         />
       </div>
       {/* End of NumberInput section */}
