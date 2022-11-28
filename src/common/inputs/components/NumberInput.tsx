@@ -17,7 +17,7 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
   const innerRef = React.useRef<HTMLInputElement>(null);
 
   const onBeforeInputHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    const allowedCharacters = ['-', '.', ','];
+    const allowedCharacters = ['-', '.'];
     const compositionEvent = event as unknown as CompositionEvent;
 
     const { currentTarget } = event;
@@ -25,10 +25,6 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     data = data.trim();
 
     if (data === "" || (!allowedCharacters.includes(data) && isNaN(Number(data)))) {
-      event.preventDefault();
-    }
-
-    if (data === "-" && currentTarget.value.length > 0) {
       event.preventDefault();
     }
 
