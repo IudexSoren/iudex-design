@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         "be-vietnam": ["Be Vietnam", "sans-serif"],
         "ibm-plex-sans": ["IBM Plex Sans", "sans-serif"],
+        "familjen-grotesk": ["Familjen Grotesk", "sans-serif"],
       },
       keyframes: {
         ripple: {
