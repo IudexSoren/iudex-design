@@ -113,11 +113,10 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
 
       if ((option as DropdownSelectOptionProps).value !== value) continue;
 
-      setTextToShow((option as DropdownSelectOptionProps).label)
+      setTextToShow((option as DropdownSelectOptionProps).label);
 
       return;
     }
-
   }
 
   const containerClassName = classNames(
@@ -135,18 +134,15 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
         tabIndex={disabled ? -1 : 0}
       >
         <TextInput
-          suffixInput={
-            <DropdownSelectSuffixInput
-              suffixInput={suffixInput}
-              clearable={clearable}
-              disabled={disabled}
-              handleClearSelection={handleClearSelection}
-              hasValue={multiple ? value.length !== 0 : !!value}
-              isOpen={isOpen}
-              lightBackground={lightBackground}
-              readonly={readonly}
-            />
-          }
+          autoComplete="off"
+          className={containerClassName}
+          disabled={disabled}
+          errorMessage={!!errorMessage}
+          inputClassName='cursor-pointer'
+          inputSize={inputSize}
+          labelContent={labelContent}
+          lightBackground={lightBackground}
+          placeholder={placeholder}
           prefixInput={
             <React.Fragment>
               {
@@ -163,19 +159,22 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
               {prefixInput}
             </React.Fragment>
           }
-          autoComplete="off"
-          className={containerClassName}
-          disabled={disabled}
-          errorMessage={!!errorMessage}
-          inputClassName='cursor-pointer'
-          inputSize={inputSize}
-          labelContent={labelContent}
-          lightBackground={lightBackground}
           readOnly={true}
           ref={ref}
           spellCheck={false}
           staticLabel
-          placeholder={placeholder}
+          suffixInput={
+            <DropdownSelectSuffixInput
+              suffixInput={suffixInput}
+              clearable={clearable}
+              disabled={disabled}
+              handleClearSelection={handleClearSelection}
+              hasValue={multiple ? value.length !== 0 : !!value}
+              isOpen={isOpen}
+              lightBackground={lightBackground}
+              readonly={readonly}
+            />
+          }
           value={textToShow}
         />
       </div>
