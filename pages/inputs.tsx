@@ -394,6 +394,7 @@ const Inputs: NextPage = () => {
           name="limit"
           onChange={onInputChange}
           step={2}
+          value={formState.limit}
         />
       </div>
       {/* End of NumberInput section */}

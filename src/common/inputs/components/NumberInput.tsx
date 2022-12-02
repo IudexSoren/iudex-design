@@ -55,7 +55,6 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
 
     innerRef.current?.setAttribute('value', newValue.toString());
 
-    console.log({ newValue })
     dispatchChangeEvent(newValue);
   }
 
@@ -69,7 +68,6 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
       newValue = max;
     }
 
-    console.log({ newValue })
     innerRef.current?.setAttribute('value', newValue.toString());
 
     dispatchChangeEvent(newValue);
@@ -82,6 +80,14 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     innerRef.current?.dispatchEvent(event);
     (event.target as any).value = newValue;
     props.onChange(event as unknown as React.ChangeEvent<HTMLInputElement>)
+  }
+
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    innerRef.current?.setAttribute('value', event.target.value);
+
+    if (!props.onChange) return;
+
+    props.onChange(event);
   }
 
   return (
@@ -104,6 +110,7 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         </React.Fragment>
       }
       {...props}
+      onChange={onInputChange}
     />
   )
 })
