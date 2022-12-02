@@ -8,14 +8,14 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement>, Ch
 }
 
 // #region DateTimePicker
-export interface DateTimePickerProps extends Omit<ReactDatePickerProps, 'name' | 'onChange' | 'selected' | 'selectsRange' | 'value'>, InputBaseProps, ClearableInputAttr {
+export interface DateTimePickerLibProps extends Omit<ReactDatePickerProps, 'name' | 'onChange' | 'selected' | 'selectsRange' | 'value'>, InputBaseProps, ClearableInputAttr {
   name: string
   onChange: (event: DateTimePickerEvent, ...args: any) => void
   selectsRange?: boolean
   value: Date | [Date | null, Date | null] | null
 }
 
-export interface DateTimePickerHeaderProps extends ReactDatePickerCustomHeaderProps {
+export interface DateTimePickerLibHeaderProps extends ReactDatePickerCustomHeaderProps {
 
 }
 // #endregion

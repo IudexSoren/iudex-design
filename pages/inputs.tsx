@@ -710,35 +710,7 @@ const Inputs: NextPage = () => {
             Overview
           </Typography>
           <DateTimePicker
-            clearable
-            labelContent='Birthdate'
-            name='birthdate'
-            onChange={onDateTimePickerChange}
-            placeholderText='Set your birthdate'
-            todayButton={(
-              <Button
-                className='btn-ghost !py-2 w-full'
-              >
-                Today
-              </Button>
-            )}
-            value={formState.birthdate}
-          />
-          <DateTimePicker
-            clearable
-            labelContent='Booking'
-            name='bookingDate'
-            onChange={onDateTimePickerChange}
-            placeholderText='Set your booking'
-            selectsRange={true}
-            todayButton={(
-              <Button
-                className='btn-ghost !py-2 w-full'
-              >
-                Today
-              </Button>
-            )}
-            value={formState.bookingDate as [null | Date, null | Date]}
+              
           />
         </div>
         {/* End of Overview section */}

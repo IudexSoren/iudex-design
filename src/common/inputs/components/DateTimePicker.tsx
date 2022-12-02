@@ -1,97 +1,50 @@
 import React from 'react'
-import classNames from 'classnames'
-import DatePicker from 'react-datepicker'
 import { TextInput } from './TextInput'
-import { Button } from '@common/buttons'
-import { CalendarIcon, CloseIcon } from '@common/icons'
-import { DateTimePickerHeader } from './datetime-picker'
-import { DateTimePickerProps } from '../types'
-import "react-datepicker/dist/react-datepicker.css"
+import { Typography } from '@common/typographies'
 
-export const DateTimePicker: React.FC<DateTimePickerProps> = ({
-  clearable,
-  disabled = false,
-  labelContent,
-  lightBackground = false,
-  name,
-  onChange,
-  prefixInput,
-  suffixInput,
-  value,
-  ...props
-}) => {
-
-  const handleOnChange = (date: Date | [Date | null, Date | null] | null, event: React.ChangeEvent<HTMLInputElement> | undefined) => {
-    if (!onChange) return;
-
-    onChange({
-      name,
-      value: date
-    }, event);
-  }
-
-  const handleClearSelection = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-
-    if (disabled || !onChange) return;
-
-    onChange({
-      name,
-      value: props.selectsRange ? [null, null] : null
-    });
-  }
-
-  const buttonClassName = classNames(
-    'btn-sm h-full',
-    {
-      "bg-base-100 hover:bg-base-200 border-base-100 hover:!border-base-200": lightBackground,
-      "bg-base-200 border-base-200 pointer-events-none": disabled
-    }
-  )
-
+export const DateTimePicker: React.FC = () => {
   return (
-    <DatePicker
-      calendarClassName='!border-zinc-300 !font-be-vietnam !rounded-none shadow-md '
-      customInput={
-        <TextInput
-          suffixInput={
-            <div className='flex h-full items-center'>
-              {
-                <React.Fragment>
-                  {suffixInput}
-                  {
-                    (!!value && clearable) ?
-                      (
-                        <Button
-                          className={buttonClassName}
-                          onClick={handleClearSelection}
-                        >
-                          <CloseIcon />
-                        </Button>
-                      ) : null
-                  }
-                </React.Fragment>
-              }
-              <div className='pl-3 pr-3'>
-                <CalendarIcon />
-              </div>
+    <div className='relative'>
+      <TextInput
+
+      />
+      <div
+        className='absolute border border-t-0 border-zinc-300 flex flex-col md:flex-row shadow-md top-full z-20'
+        tabIndex={1}
+      >
+        <div
+          className='bg-primary flex flex-col items-center p-3 text-base-100'
+        >
+          <Typography
+            className='flex gap-1 font-bold'
+            level='p'
+            size='xl'
+          >
+            <span>
+              Dec
+            </span>
+            <div>
+              <span>
+                2
+              </span>
+              <span>,</span>
             </div>
-          }
-          prefixInput={prefixInput}
-          labelContent={labelContent}
-        />
-      }
-      disabled={disabled}
-      dropdownMode='select'
-      endDate={Array.isArray(value) ? value[1] : null}
-      onChange={(date, event) => handleOnChange(date, event as React.ChangeEvent<HTMLInputElement>)}
-      popperClassName='!p-0 !z-20'
-      renderCustomHeader={(headerProps) => <DateTimePickerHeader {...headerProps} />}
-      selected={Array.isArray(value) ? null : value}
-      showMonthDropdown
-      showPopperArrow={false}
-      startDate={Array.isArray(value) ? value[0] : null}
-      {...props}
-    />
+            <span>
+              2022
+            </span>
+          </Typography>
+          <Typography
+            level='p'
+          >
+            12:00
+          </Typography>
+        </div>
+        <div
+          className='bg-base-200 p-3'
+        >
+
+        </div>
+      </div>
+    </div>
   )
 }

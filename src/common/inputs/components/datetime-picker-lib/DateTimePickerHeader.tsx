@@ -3,9 +3,9 @@ import { Button } from '@common/buttons'
 import { DropdownSelect } from '../DropdownSelect'
 import { createNumbersRange } from '@common/other/helpers'
 import { ChevronLeftIcon, ChevronRightIcon } from '@common/icons'
-import { DateTimePickerHeaderProps, DropdownSelectOptionProps } from '@common/inputs/types'
+import { DateTimePickerLibHeaderProps, DropdownSelectOptionProps } from '@common/inputs/types'
 
-export const DateTimePickerHeader: React.FC<DateTimePickerHeaderProps> = ({
+export const DateTimePickerHeader: React.FC<DateTimePickerLibHeaderProps> = ({
   changeMonth,
   changeYear,
   customHeaderCount,
