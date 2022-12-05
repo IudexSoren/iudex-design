@@ -101,6 +101,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
     'border-zinc-300 flex input p-0 relative',
     className,
     {
+      "border-zinc-200": props.disabled
+    },
+    {
       'bg-base-100': lightBackground,
       'bg-base-200': !lightBackground
     },
@@ -121,9 +124,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   )
 
   const labelContainerClassName = classNames(
-    'duration-300 px-0 relative transition-all z-10',
+    'duration-300 mb-1 px-0 relative transition-all z-10',
     {
-      'opacity-50': props.disabled,
       'pointer-events-none': !staticLabel && !props.value
     }
   )
@@ -146,66 +148,64 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   )
 
   return (
-    <div className='flex flex-col gap-1 relative'>
-      <div className='flex flex-col gap-1'>
+    <div>
+      {
+        labelContent && (
+          <div
+            className={labelContainerClassName}
+            ref={labelContainerRef}
+          >
+            <label htmlFor={props.id}>{labelContent}</label>
+          </div>
+        )
+      }
+      <div
+        className={inputContainerClassName}
+        onClick={handleClickContainer}
+      >
         {
-          labelContent && (
+          !!prefixInput &&
+          (
             <div
-              className={labelContainerClassName}
-              ref={labelContainerRef}
+              className={sideComponentsClassName}
             >
-              <label htmlFor={props.id}>{labelContent}</label>
+              {prefixInput}
             </div>
           )
         }
-        <div
-          className={inputContainerClassName}
-          onClick={handleClickContainer}
-        >
-          {
-            !!prefixInput &&
-            (
-              <div
-                className={sideComponentsClassName}
-              >
-                {prefixInput}
-              </div>
-            )
-          }
-          <input
-            {...props}
-            className={inputInternalClassName}
-            onBlur={onBlurInput}
-            onChange={onInputChange}
-            onFocus={onFocusInput}
-            placeholder={(hasFocus || staticLabel || !labelContent) ? placeholder : ''}
-            ref={mergeRefs(inputRef, ref)}
-          />
-          {
-            !!suffixInput &&
-            (
-              <div
-                className={sideComponentsClassName}
-              >
-                {suffixInput}
-              </div>
-            )
-          }
-          <FocusElement
-            className={focusElementClassName}
-            hasFocus={hasFocus}
-          />
-        </div>
+        <input
+          {...props}
+          className={inputInternalClassName}
+          onBlur={onBlurInput}
+          onChange={onInputChange}
+          onFocus={onFocusInput}
+          placeholder={(hasFocus || staticLabel || !labelContent) ? placeholder : ''}
+          ref={mergeRefs(inputRef, ref)}
+        />
+        {
+          !!suffixInput &&
+          (
+            <div
+              className={sideComponentsClassName}
+            >
+              {suffixInput}
+            </div>
+          )
+        }
+        <FocusElement
+          className={focusElementClassName}
+          hasFocus={hasFocus}
+        />
       </div>
       {
         typeof errorMessage !== 'boolean' ?
           (
-            <ErrorMessage>
+            <ErrorMessage className='mt-1'>
               {errorMessage}
             </ErrorMessage>
           ) :
           null
       }
-    </div >
+    </div>
   )
 })
