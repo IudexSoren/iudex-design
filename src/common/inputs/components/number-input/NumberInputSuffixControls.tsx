@@ -10,7 +10,7 @@ export const NumberInputSuffixControls: React.FC<NumberInputSuffixControlsProps>
 }) => {
 
   const buttonClassName = classNames(
-    'btn-sm h-full',
+    'btn-sm h-1/2 p-1',
     {
       "bg-base-100 hover:bg-base-200 border-base-100 hover:!border-base-200": false,
       "bg-base-200 border-base-200 pointer-events-none": false
@@ -18,18 +18,18 @@ export const NumberInputSuffixControls: React.FC<NumberInputSuffixControlsProps>
   )
 
   return (
-    <div className='flex h-full items-center'>
-      <Button
-        className={buttonClassName}
-        onClick={onDecrementValue}
-      >
-        <SubtractIcon />
-      </Button>
+    <div className='flex flex-col h-full items-center'>
       <Button
         className={buttonClassName}
         onClick={onIncrementValue}
       >
         <AddIcon />
+      </Button>
+      <Button
+        className={buttonClassName}
+        onClick={onDecrementValue}
+      >
+        <SubtractIcon />
       </Button>
     </div>
   )
