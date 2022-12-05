@@ -5,8 +5,7 @@ import { TextInput } from './TextInput'
 import { NumberInput } from './NumberInput'
 import { DropdownSelect } from './DropdownSelect'
 import { DateTimePickerDisplay } from './datetime-picker'
-import { DropdownSelectOptionProps } from '../types'
-import { createNumbersRange } from '@common/other/helpers'
+import { DropdownSelectEvent, DropdownSelectOptionProps } from '../types'
 
 const WEEKS_TO_SHOW = 6;
 const DAYS_PER_WEEK = 7;
@@ -86,13 +85,23 @@ export const DateTimePicker: React.FC = () => {
     }
   }), []);
 
-  const yearsList = React.useMemo<DropdownSelectOptionProps[]>(() => createNumbersRange(1990, new Date().getFullYear()).map(year => ({
-    label: year.toString(),
-    value: year
-  })), []);
-
   const getFirstWeekdayOfTheMonth = () => {
     return date.startOf("month").weekday;
+  }
+
+  const handleChangeMonth = (event: DropdownSelectEvent) => {
+    const { value } = event;
+    const updatedDate = DateTime.local(date.year, value);
+
+    setDate(updatedDate);
+  }
+
+  const handleChangeYear = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = event;
+    const { value } = target;
+    const updatedDate = DateTime.local(Number(value), date.month);
+
+    setDate(updatedDate);
   }
 
   return (
@@ -109,19 +118,22 @@ export const DateTimePicker: React.FC = () => {
           className='bg-base-200 p-3'
         >
           <div
-            className='mb-3'
+            className='grid grid-cols-2 mb-3 w-60'
           >
             <NumberInput
+              className='border-t-0 border-x-0'
               inputSize='sm'
-              lightBackground
               name="year"
+              onChange={handleChangeYear}
+              value={date.year}
             />
             <DropdownSelect
+              className='border-t-0 border-x-0 w-32'
               inputSize='sm'
-              lightBackground
               name='month'
+              onChange={handleChangeMonth}
               options={monthsList}
-              value={''}
+              value={date.month}
             />
           </div>
           <table
