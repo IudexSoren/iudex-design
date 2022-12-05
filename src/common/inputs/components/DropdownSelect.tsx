@@ -13,6 +13,7 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
   emptyList,
   errorMessage,
   filterable = false,
+  inputClassName,
   inputSize,
   labelContent,
   lightBackground = false,
@@ -124,6 +125,11 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
     className,
   )
 
+  const dropdownSelectInputClassName = classNames(
+    'cursor-pointer',
+    inputClassName
+  )
+
   return (
     <div
       className='relative'
@@ -138,7 +144,7 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
           className={containerClassName}
           disabled={disabled}
           errorMessage={!!errorMessage}
-          inputClassName='cursor-pointer'
+          inputClassName={dropdownSelectInputClassName}
           inputSize={inputSize}
           labelContent={labelContent}
           lightBackground={lightBackground}

@@ -140,16 +140,11 @@ export interface NumberInputEvent {
 }
 
 // Generic Input
-export interface InputBaseProps extends BackgroundAttr, PrefixAndSuffixInputAttrs, DisabledInputAttr, ErrorMessageAttr, InputSizeAttr, LabelContentAttr {
+export interface InputBaseProps extends BackgroundAttr, DisabledInputAttr, ErrorMessageAttr, InputClassNameAttr, InputSizeAttr, LabelContentAttr, PrefixAndSuffixInputAttrs {
 
 }
 
 // Generic types
-export interface PrefixAndSuffixInputAttrs {
-  suffixInput?: ReactElement
-  prefixInput?: ReactElement
-}
-
 export interface CheckableInputAttr {
   containerClassName?: string
   contentClickable?: boolean
@@ -167,12 +162,21 @@ export interface ErrorMessageAttr {
   errorMessage?: ReactElement | string | boolean
 }
 
+export interface InputClassNameAttr {
+  inputClassName?: string
+}
+
 export interface InputSizeAttr {
   inputSize?: BASIC_SIZES
 }
 
 export interface LabelContentAttr {
   labelContent?: ReactElement | string
+}
+
+export interface PrefixAndSuffixInputAttrs {
+  suffixInput?: ReactElement
+  prefixInput?: ReactElement
 }
 
 export interface SliderStateProps {

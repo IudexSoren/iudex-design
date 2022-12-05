@@ -72,7 +72,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
         />
       )
     })
-  }, [filterText, options]);
+  }, [filterText, options, value]);
 
   const handleFilterTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
