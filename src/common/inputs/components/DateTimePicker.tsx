@@ -118,17 +118,19 @@ export const DateTimePicker: React.FC = () => {
           className='bg-base-200 p-3'
         >
           <div
-            className='grid grid-cols-2 mb-3 w-60'
+            className='grid grid-cols-2 mb-3 w-64'
           >
             <NumberInput
               className='border-t-0 border-x-0'
+              inputClassName='px-0'
               inputSize='sm'
-              name="year"
+              name='year'
               onChange={handleChangeYear}
               value={date.year}
             />
             <DropdownSelect
               className='border-t-0 border-x-0 w-32'
+              inputClassName='px-0'
               inputSize='sm'
               name='month'
               onChange={handleChangeMonth}
