@@ -22,8 +22,20 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
   value
 }) => {
 
+  const filterInputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    if (filterable) {
+      filterInputRef.current?.focus();
+    }
+  }, [isOpen]);
+
   const renderOptions = React.useCallback((optionsToRender: (DropdownSelectGroupOptionProps | DropdownSelectOptionProps)[]) => {
-    const filteredOptions = optionsToRender?.filter(option => !!(option as DropdownSelectGroupOptionProps).options ? true : option.label.toLowerCase().includes(filterText.toLowerCase()));
+    const filteredOptions = filterOptionsToRender(optionsToRender);
 
     return filteredOptions?.map((option, index) => {
 
@@ -57,13 +69,14 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
         )
       }
 
-      if (multiple)
+      if (multiple) {
         return (
           <DropdownSelectCheckboxItem
             checked={value.includes((option as DropdownSelectOptionProps).value)}
             {...itemProps}
           />
         );
+      }
 
       return (
         <DropdownSelectItem
@@ -73,6 +86,15 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
       )
     })
   }, [filterText, options, value]);
+
+  const filterOptionsToRender = (optionsToRender: (DropdownSelectGroupOptionProps | DropdownSelectOptionProps)[]) => {
+    const filteredOptions = optionsToRender?.filter((option) => 
+      !!(option as DropdownSelectGroupOptionProps).options ? true :
+        option.label.toLowerCase().includes(filterText.toLowerCase())
+    );
+
+    return filteredOptions;
+  }
 
   const handleFilterTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
@@ -85,12 +107,12 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
   }
 
   const dropdownContentClassName = classNames(
+    listClassName,
     'absolute border border-t-0 border-zinc-300 inset-x-0 shadow-md w-full z-20',
     {
       'bg-base-100': lightBackground,
       'bg-base-200': !lightBackground,
     },
-    listClassName
   )
 
   if (!isOpen) return null;
@@ -104,34 +126,33 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
           (
             <React.Fragment>
               {
-                filterable && (
-                  <div
-                    className='p-3'
-                  >
-                    <TextInput
-                      suffixInput={
-                        <Button
-                          className='btn-sm btn-ghost h-full '
-                          onClick={handleClearFilterText}
-                        >
-                          <CloseIcon />
-                        </Button>
-                      }
-                      autoComplete={'off'}
-                      prefixInput={
-                        <div className='pl-3'>
-                          <SearchIcon />
-                        </div>
-                      }
-                      inputSize={inputSize}
-                      lightBackground={!lightBackground}
-                      onChange={handleFilterTextChange}
-                      placeholder='Search'
-                      spellCheck={false}
-                      value={filterText}
-                    />
-                  </div>
-                )
+                filterable ? (
+                  <TextInput
+                    autoComplete={'off'}
+                    className="border-t-0 border-x-0"
+                    inputSize={inputSize}
+                    lightBackground={!lightBackground}
+                    onChange={handleFilterTextChange}
+                    placeholder='Search'
+                    prefixInput={
+                      <div className='pl-3'>
+                        <SearchIcon />
+                      </div>
+                    }
+                    ref={filterInputRef}
+                    spellCheck={false}
+                    suffixInput={
+                      <Button
+                        className='btn-sm btn-ghost h-full '
+                        onClick={handleClearFilterText}
+                      >
+                        <CloseIcon />
+                      </Button>
+                    }
+                    value={filterText}
+                  />
+                ) :
+                  null
               }
               <ul
                 className='max-h-[225px] overflow-auto'
