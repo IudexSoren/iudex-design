@@ -12,13 +12,27 @@ const DAYS_PER_WEEK = 7;
 
 export const DateTimePicker: React.FC = () => {
 
-  const [date, setDate] = React.useState(DateTime.local());
+  const [date, setDate] = React.useState<DateTime>(DateTime.local());
+  const [year, setYear] = React.useState<number>(date.year);
+  const [month, setMonth] = React.useState<number>(date.month);
   const [weekdaysName, setWeekdaysName] = React.useState<string[]>([]);
 
   React.useEffect(() => {
     setWeekdaysName(Info.weekdays('narrow'));
-    renderWeeks()
+    renderWeeks();
   }, []);
+
+  React.useEffect(() => {
+    if (date.year === year) return;
+
+    setDate(date.set({ year: year }));
+  }, [year]);
+
+  React.useEffect(() => {
+    if (date.month === month) return;
+
+    setDate(date.set({ month: month }));
+  }, [month]);
 
   const renderWeekdaysName = React.useCallback(() => (
     weekdaysName.map((dayName, index) => (
@@ -91,17 +105,13 @@ export const DateTimePicker: React.FC = () => {
 
   const handleChangeMonth = (event: DropdownSelectEvent) => {
     const { value } = event;
-    const updatedDate = DateTime.local(date.year, value);
-
-    setDate(updatedDate);
+    setMonth(value);
   }
 
   const handleChangeYear = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     const { value } = target;
-    const updatedDate = DateTime.local(Number(value), date.month);
-
-    setDate(updatedDate);
+    setYear(Number(value));
   }
 
   return (
@@ -118,11 +128,11 @@ export const DateTimePicker: React.FC = () => {
           className='bg-base-200 p-3'
         >
           <div
-            className='grid grid-cols-2 mb-3 w-64'
+            className='gap-2 grid grid-cols-2 mb-3 w-64'
           >
             <NumberInput
               className='border-t-0 border-x-0'
-              inputClassName='px-0'
+              inputClassName='!px-0'
               inputSize='sm'
               name='year'
               onChange={handleChangeYear}
@@ -130,16 +140,21 @@ export const DateTimePicker: React.FC = () => {
             />
             <DropdownSelect
               className='border-t-0 border-x-0 w-32'
-              inputClassName='px-0'
+              inputClassName='!px-0'
               inputSize='sm'
               name='month'
               onChange={handleChangeMonth}
               options={monthsList}
               value={date.month}
             />
+            <Button
+              className='btn-secondary col-span-2 py-1'
+            >
+              Set today's date
+            </Button>
           </div>
           <table
-
+          className='mx-auto'
           >
             <thead>
               <tr
