@@ -24,6 +24,8 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     let { data } = compositionEvent;
     data = data.trim();
 
+    const isHyphen = data === '-';
+
     if (data === "" || (!allowedCharacters.includes(data) && isNaN(Number(data)))) {
       event.preventDefault();
     }
@@ -34,8 +36,10 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
       event.preventDefault();
     }
 
-    if (min !== undefined && numberValue < min) {
-      event.preventDefault();
+    if (min !== undefined) {
+
+      if (numberValue < min || (isHyphen && min >= 0))
+        event.preventDefault();
     }
 
     if (!onBeforeInput) return;

@@ -134,6 +134,7 @@ export const DateTimePicker: React.FC = () => {
               className='border-t-0 border-x-0'
               inputClassName='!px-0'
               inputSize='sm'
+              min={0}
               name='year'
               onChange={handleChangeYear}
               value={date.year}
