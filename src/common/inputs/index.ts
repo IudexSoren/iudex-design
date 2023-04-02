@@ -1,10 +1,8 @@
-export { Checkbox } from './components/Checkbox';
-export { DateTimePicker } from './components/DateTimePicker';
-export { DropdownSelect } from './components/DropdownSelect';
+export { Checkbox } from './components/checkbox';
+export { DateTimePicker } from './components/datetime-picker';
+export { DropdownSelect } from './components/dropdown-select';
 export { ErrorMessage } from './components/ErrorMessage';
-export { NumberInput } from './components/NumberInput';
-export { Radio } from './components/Radio';
-export { Slider } from './components/Slider';
-export { TextInput } from './components/TextInput';
-
-export type { DateTimePickerEvent, DropdownSelectOptionProps, DropdownSelectEvent } from './types';
+export { NumberInput } from './components/number-input';
+export { Radio } from './components/radio';
+export { TextInput, UnstyledTextInput } from './components/text-input';
+export { TimePicker } from './components/time-picker';

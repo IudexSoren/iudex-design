@@ -12,7 +12,25 @@ const Buttons: NextPage = () => {
       className='h-screen'
     >
       <Button
-        className='btn-primary py-2'
+        className='btn-primary gap-2 py-2'
+        ref={buttonRef}
+      >
+        <span>
+          Button text
+        </span>
+        <ForwardArrowIcon className='text-xl' />
+      </Button>
+      <Button
+        className='btn-secondary gap-2 py-2'
+        ref={buttonRef}
+      >
+        <span>
+          Button text
+        </span>
+        <ForwardArrowIcon className='text-xl' />
+      </Button>
+      <Button
+        className='btn-ghost gap-2 py-2'
         ref={buttonRef}
       >
         <span>

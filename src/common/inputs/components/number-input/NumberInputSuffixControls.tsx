@@ -1,8 +1,11 @@
 import React from 'react'
 import classNames from 'classnames'
-import { AddIcon, SubtractIcon } from '@common/icons'
+
 import { Button } from '@common/buttons'
-import { NumberInputSuffixControlsProps } from '@common/inputs/types'
+
+import { NumberInputSuffixControlsProps } from './number-input.types'
+
+import { ChevronDownIcon, ChevronUpIcon } from '@common/icons'
 
 export const NumberInputSuffixControls: React.FC<NumberInputSuffixControlsProps> = ({
   onDecrementValue,
@@ -10,7 +13,7 @@ export const NumberInputSuffixControls: React.FC<NumberInputSuffixControlsProps>
 }) => {
 
   const buttonClassName = classNames(
-    'btn-sm h-1/2 p-1',
+    'btn-sm btn-ghost !h-1/2 p-1',
     {
       "bg-base-100 hover:bg-base-200 border-base-100 hover:!border-base-200": false,
       "bg-base-200 border-base-200 pointer-events-none": false
@@ -22,14 +25,16 @@ export const NumberInputSuffixControls: React.FC<NumberInputSuffixControlsProps>
       <Button
         className={buttonClassName}
         onClick={onIncrementValue}
+        tabIndex={-1}
       >
-        <AddIcon />
+        <ChevronUpIcon />
       </Button>
       <Button
         className={buttonClassName}
         onClick={onDecrementValue}
+        tabIndex={-1}
       >
-        <SubtractIcon />
+        <ChevronDownIcon />
       </Button>
     </div>
   )

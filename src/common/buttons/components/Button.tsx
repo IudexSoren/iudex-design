@@ -40,15 +40,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
       ripples.classList.add(
         'absolute',
         'animate-ripple',
-        'bg-black/30',
+        'bg-black/20',
         'pointer-event-none',
+        'origin-center',
         'rounded-full',
+        'inset-1/2',
         '-translate-x-1/2',
         '-translate-y-1/2',
       );
 
-      ripples.style.left = x + 'px';
-      ripples.style.top = y + 'px';
+      // ripples.style.left = x + 'px';
+      // ripples.style.top = y + 'px';
 
       focusElementRef.current?.appendChild(ripples);
 
@@ -63,7 +65,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   }
 
   const className = classNames(
-    "btn h-auto min-h-fit focus:outline-none overflow-hidden py-0 relative focus:!scale-100",
+    "animate-none btn h-auto min-h-fit focus:outline-0 py-0 relative active:!scale-100 focus:!scale-100",
     props.className
   );
 

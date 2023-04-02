@@ -6,7 +6,7 @@ const Document: React.FC = () => {
     <Html >
       <Head />
       <body
-        className='font-familjen-grotesk'
+        className='font-encode-sans'
         data-theme="ix-light-primary"
       >
         <Main />

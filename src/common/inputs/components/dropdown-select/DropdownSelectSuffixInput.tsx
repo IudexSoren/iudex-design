@@ -1,12 +1,15 @@
 import React from 'react'
 import classNames from 'classnames'
+
 import { Button } from '@common/buttons'
+
+import { DropdownSelectSuffixInputProps } from './dropdown-select.types'
+
 import {
   ChevronDownIcon,
   ChevronUpIcon,
   CloseIcon
 } from '@common/icons'
-import { DropdownSelectSuffixInputProps } from '@common/inputs/types'
 
 export const DropdownSelectSuffixInput: React.FC<DropdownSelectSuffixInputProps> = ({
   suffixInput,

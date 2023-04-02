@@ -8,9 +8,11 @@ module.exports = {
         ripple: "ripple 0.8s linear infinite",
       },
       fontFamily: {
+        b612: ["B612", "sans-serif"],
         "be-vietnam": ["Be Vietnam", "sans-serif"],
-        "ibm-plex-sans": ["IBM Plex Sans", "sans-serif"],
+        "encode-sans": ["Encode Sans", "sans-serif"],
         "familjen-grotesk": ["Familjen Grotesk", "sans-serif"],
+        "ibm-plex-sans": ["IBM Plex Sans", "sans-serif"],
       },
       keyframes: {
         ripple: {
@@ -32,19 +34,15 @@ module.exports = {
   daisyui: {
     styled: true,
     themes: [
-      "lofi",
-      "forest",
-      "winter",
       {
         "ix-light-primary": {
           primary: "#0f62fe",
-          secondary: "#393939",
+          secondary: "#121420",
           accent: "#a5f3fc",
           neutral: "#f3f4f6",
           "base-100": "#ffffff",
           "base-200": "#f4f4f4",
           "base-300": "#bcc2cd",
-          "base-400": "#161616",
           info: "#0ea5e9",
           success: "#16a34a",
           warning: "#eab308",

@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { Button } from '@common/buttons'
 import { CloseIcon, SearchIcon } from '@common/icons'
 import { TextInput } from '@common/inputs'
-import { DropdownSelectGroupOptionProps, DropdownSelectOptionProps, DropdownSelectOptionsListProps } from '@common/inputs/types'
+import { DropdownSelectOptionsListProps } from '@common/inputs/components/dropdown-select/dropdown-select.types'
 import { DropdownSelectCheckboxItem } from './DropdownSelectCheckboxItem'
 import { DropdownSelectItem } from './DropdownSelectItem'
 
@@ -61,7 +61,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
             <div
               className='flex gap-1 items-center px-3 py-1 text-zinc-500'
             >
-              <span className='text-sm'>{option.label}</span>
+              <span className='text-xs'>{option.label}</span>
             </div>
             {renderOptions(subOptions)}
             <hr className=' border-zinc-300 w-full' />
@@ -88,7 +88,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
   }, [filterText, options, value]);
 
   const filterOptionsToRender = (optionsToRender: (DropdownSelectGroupOptionProps | DropdownSelectOptionProps)[]) => {
-    const filteredOptions = optionsToRender?.filter((option) => 
+    const filteredOptions = optionsToRender?.filter((option) =>
       !!(option as DropdownSelectGroupOptionProps).options ? true :
         option.label.toLowerCase().includes(filterText.toLowerCase())
     );
@@ -130,6 +130,7 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
                   <TextInput
                     autoComplete={'off'}
                     className="border-t-0 border-x-0"
+                    inputClassName='pr-0'
                     inputSize={inputSize}
                     lightBackground={!lightBackground}
                     onChange={handleFilterTextChange}

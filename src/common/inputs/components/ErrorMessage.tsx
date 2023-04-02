@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { AllHTMLAttributes, ReactElement } from 'react'
 import classNames from 'classnames';
-import { ErrorMessageProps } from '../types';
+
+export interface ErrorMessageProps extends AllHTMLAttributes<HTMLDivElement> {
+  children?: ReactElement | string
+}
 
 export const ErrorMessage: React.FC<ErrorMessageProps> = ({
   ...props

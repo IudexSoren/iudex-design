@@ -12,5 +12,6 @@ export {
   Password as PasswordIcon,
   Search as SearchIcon,
   Subtract as SubtractIcon,
+  Time as TimeIcon,
   User as UserIcon
 } from '@carbon/icons-react';

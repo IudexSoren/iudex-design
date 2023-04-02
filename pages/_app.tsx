@@ -17,6 +17,12 @@ import '@fontsource/familjen-grotesk/500.css';
 import '@fontsource/familjen-grotesk/600.css';
 import '@fontsource/familjen-grotesk/700.css';
 
+import '@fontsource/b612'
+import '@fontsource/encode-sans/300.css'
+import '@fontsource/encode-sans/400.css'
+import '@fontsource/encode-sans/500.css'
+import '@fontsource/encode-sans/700.css'
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SSRProvider>

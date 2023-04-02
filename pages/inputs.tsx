@@ -1,10 +1,10 @@
 import React from 'react'
 import { NextPage } from 'next'
-import { CancelIcon, CheckmarkFilledIcon, ForwardArrowIcon, PasswordIcon, UserIcon } from '@common/icons'
-import { Checkbox, DateTimePicker, DropdownSelect, DropdownSelectEvent, Radio, Slider, TextInput, DropdownSelectOptionProps, DateTimePickerEvent, NumberInput } from '@common/inputs'
+
+import { Checkbox, DateTimePicker, DropdownSelect, Radio, TextInput, NumberInput, TimePicker } from '@common/inputs'
 import { Typography } from '@common/typographies'
-import { Button } from '@common/buttons'
-import { DropdownSelectGroupOptionProps } from '@common/inputs/types'
+
+import { CancelIcon, CheckmarkFilledIcon, ForwardArrowIcon, PasswordIcon, UserIcon } from '@common/icons'
 
 const Inputs: NextPage = () => {
 
@@ -24,7 +24,7 @@ const Inputs: NextPage = () => {
   })
 
   React.useEffect(() => {
-    console.table(formState)
+    // console.table(formState)
   }, [formState])
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,6 +77,7 @@ const Inputs: NextPage = () => {
       value: 1,
     },
     {
+      disabled: true,
       label: 'Games',
       value: 2,
     },
@@ -100,7 +101,6 @@ const Inputs: NextPage = () => {
 
   const playlistsGrouped = React.useMemo<(DropdownSelectOptionProps | DropdownSelectGroupOptionProps)[]>(() => [
     {
-      disabled: true,
       label: 'Music',
       options: [
         {
@@ -108,6 +108,7 @@ const Inputs: NextPage = () => {
           value: 1,
         },
         {
+          disabled: true,
           label: 'Rock',
           value: 2,
         },
@@ -118,6 +119,7 @@ const Inputs: NextPage = () => {
       ]
     },
     {
+      disabled: true,
       label: 'Cars',
       options: [
         {
@@ -164,6 +166,26 @@ const Inputs: NextPage = () => {
     {
       label: 'Nissan',
       value: 6,
+    },
+    {
+      label: 'Mercedes-Benz',
+      value: 7,
+    },
+    {
+      label: 'Honda',
+      value: 8,
+    },
+    {
+      label: 'Audi',
+      value: 9,
+    },
+    {
+      label: 'Subaru',
+      value: 10,
+    },
+    {
+      label: 'Porsche',
+      value: 11,
     }
   ], [formState]);
 
@@ -221,6 +243,61 @@ const Inputs: NextPage = () => {
           />
         </div>
         {/* End of Overview section */}
+
+        {/* Sizes section */}
+        <div
+          className='mb-5'
+        >
+          <Typography
+            className='mb-3'
+            level='h3'
+            size='2xl'
+          >
+            Sizes
+          </Typography>
+          <div
+            className='flex flex-col sm:flex-row gap-3'
+          >
+            <TextInput
+              autoComplete={'off'}
+              labelContent="LG size"
+              name='username'
+              onChange={onInputChange}
+              placeholder='E.g.: Iudex, Soren, ...'
+              inputSize='lg'
+              spellCheck={false}
+              value={formState.username}
+            />
+            <TextInput
+              autoComplete={'off'}
+              labelContent="MD size (Default)"
+              name='username'
+              onChange={onInputChange}
+              placeholder='E.g.: Iudex, Soren, ...'
+              spellCheck={false}
+              value={formState.username}
+            />
+            <TextInput
+              autoComplete={'off'}
+              inputSize='sm'
+              labelContent="SM size"
+              name='username'
+              onChange={onInputChange}
+              placeholder='E.g.: Iudex, Soren, ...'
+              value={formState.username}
+            />
+            <TextInput
+              autoComplete={'off'}
+              inputSize='xs'
+              labelContent="XS size"
+              name='username'
+              onChange={onInputChange}
+              placeholder='E.g.: Iudex, Soren, ...'
+              value={formState.username}
+            />
+          </div>
+        </div>
+        {/* End of Sizes section */}
 
         {/* States section */}
         <div
@@ -445,7 +522,7 @@ const Inputs: NextPage = () => {
         <div>
           <div>Select a role</div>
           <div
-            className='flex gap-2'
+            className='flex gap-4 mt-2'
           >
             <Radio
               containerClassName='flex-row-reverse gap-3'
@@ -595,6 +672,7 @@ const Inputs: NextPage = () => {
           <DropdownSelect
             clearable
             labelContent='Playlist (Readonly)'
+            lightBackground
             name='playlist'
             onChange={onSelectChange}
             options={playlists}
@@ -686,6 +764,32 @@ const Inputs: NextPage = () => {
       </div>
       {/* End of DropdownSelect section */}
 
+      {/* Radio section */}
+      <div
+        className='mb-5'
+      >
+        <Typography
+          className='mb-4'
+          level='h2'
+          size='3xl'
+        >
+          TimePicker
+        </Typography>
+
+        <div>
+          <TimePicker
+            errorMessage={
+              <div className='flex gap-1 items-center'>
+                <CancelIcon /> Required
+              </div>
+            }
+            labelContent="Time"
+            value='00:04'
+          />
+        </div>
+      </div>
+      {/* End of Radio section */}
+
       {/* DateTimePicker section */}
       <div
         className='mb-5'
@@ -710,7 +814,7 @@ const Inputs: NextPage = () => {
             Overview
           </Typography>
           <DateTimePicker
-              
+
           />
         </div>
         {/* End of Overview section */}

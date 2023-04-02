@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
-import { DropdownSelectItemProps } from '@common/inputs/types'
+import { DropdownSelectItemProps } from './dropdown-select.types'
+import { Button } from '@common/buttons'
 
 export const DropdownSelectItem: React.FC<DropdownSelectItemProps> = ({
   lightBackground = false,
@@ -10,23 +11,25 @@ export const DropdownSelectItem: React.FC<DropdownSelectItemProps> = ({
 }) => {
 
   const itemClassName = classNames(
-    'cursor-pointer p-3 relative',
+    'block border-0 cursor-pointer font-normal normal-case !p-3 relative text-left w-full',
     {
-      "bg-base-200": lightBackground && selected,
-      "bg-base-300": !lightBackground && selected,
-      "hover:bg-base-200": lightBackground,
-      "hover:bg-base-300": !lightBackground,
-      "cursor-not-allowed opacity-50": option.disabled
+      "btn-primary": selected,
+      "hover:bg-primary/10": lightBackground && !option.disabled && !selected,
+      "hover:bg-primary/20": !lightBackground && !option.disabled && !selected,
+      "!cursor-not-allowed opacity-50 pointer-events-none select-none": option.disabled
     }
   )
 
   return (
-    <li
+    <Button
       className={itemClassName}
       onClick={() => option.disabled ? null : onClickItem(option.value)}
       tabIndex={option.disabled ? -1 : 0}
     >
-      {option.children ?? option.label}
-    </li>
+      <li
+      >
+        {option.children ?? option.label}
+      </li>
+    </Button>
   )
 }
