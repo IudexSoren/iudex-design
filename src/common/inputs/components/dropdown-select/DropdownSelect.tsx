@@ -168,7 +168,6 @@ export const DropdownSelect = React.forwardRef<HTMLInputElement, DropdownSelectP
           readOnly={true}
           ref={ref}
           spellCheck={false}
-          staticLabel
           suffixInput={
             <DropdownSelectSuffixInput
               suffixInput={suffixInput}

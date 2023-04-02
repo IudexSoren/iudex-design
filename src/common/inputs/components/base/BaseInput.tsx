@@ -10,15 +10,21 @@ export const BaseInput: React.FC<BaseInputProps> = ({
   className,
   disabled,
   errorMessage,
-  handleClickContainer,
   hasFocus = false,
   id,
+  inputRef,
   inputSize,
   labelContent,
   lightBackground,
   prefixInput,
   suffixInput
 }) => {
+
+  const handleClickContainer = () => {
+    if (!inputRef.current) return;
+
+    inputRef.current.focus();
+  }
 
   const inputContainerClassName = classNames(
     'border-zinc-300 flex input p-0 relative',

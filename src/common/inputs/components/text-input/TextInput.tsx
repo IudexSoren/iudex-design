@@ -12,8 +12,6 @@ import { FocusElement } from '@common/other/components/FocusElement'
 import { TextInputProps } from './text-input.types'
 
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
-  suffixInput,
-  prefixInput,
   className,
   errorMessage,
   inputClassName,
@@ -21,65 +19,18 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
   labelContent,
   lightBackground = false,
   onBlur,
-  onChange,
   onFocus,
-  placeholder,
-  staticLabel = true,
+  prefixInput,
+  suffixInput,
   ...props
 }, ref) => {
 
-  let labelTranslateClass = 'translate-y-[165%]';
-
-  switch (inputSize) {
-    case 'xs':
-      labelTranslateClass = 'translate-y-[115%]';
-      break;
-    case 'sm':
-      labelTranslateClass = 'translate-y-[135%]';
-      break;
-    case 'md':
-      labelTranslateClass = 'translate-y-[165%]';
-      break;
-    case 'lg':
-      labelTranslateClass = 'translate-y-[200%]';
-      break;
-    default:
-      labelTranslateClass = 'translate-y-[165%]';
-  }
-
-  const [hasValue, setHasValue] = React.useState(!!props.value);
   const [hasFocus, setHasFocus] = React.useState(false);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const labelContainerRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    addFocusClasses();
-  }, []);
-
-  React.useEffect(() => {
-    setHasValue(!!props.value);
-  }, [props.value]);
-
-  const handleClickContainer = () => {
-    inputRef.current?.focus();
-  }
-
-  const addFocusClasses = () => {
-    if (staticLabel || !labelContent || !labelContainerRef.current || inputRef.current?.value) return;
-
-    labelContainerRef.current.classList.add('!px-3', labelTranslateClass)
-  }
-
-  const removeFocusClasses = () => {
-    if (staticLabel || !labelContent || !labelContainerRef.current) return;
-
-    labelContainerRef.current.classList.remove('!px-3', labelTranslateClass)
-  }
 
   const onFocusInput = (event: React.FocusEvent<HTMLInputElement>) => {
     setHasFocus(true);
-    removeFocusClasses();
 
     if (onFocus) {
       onFocus(event);
@@ -88,38 +39,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
 
   const onBlurInput = (event: React.FocusEvent<HTMLInputElement>) => {
     setHasFocus(false);
-    addFocusClasses();
 
     if (onBlur) {
       onBlur(event);
     }
   }
-
-  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setHasValue(!!inputRef.current?.value);
-
-    if (onChange) {
-      onChange(event);
-    }
-  }
-
-  const inputContainerClassName = classNames(
-    'border-zinc-300 flex input p-0 relative',
-    className,
-    {
-      "border-zinc-200": props.disabled
-    },
-    {
-      'bg-base-100': lightBackground,
-      'bg-base-200': !lightBackground
-    },
-    {
-      'input-xs': inputSize === 'xs',
-      'input-sm': inputSize === 'sm',
-      'input-md': inputSize === 'md',
-      'input-lg': inputSize === 'lg',
-    }
-  )
 
   const inputInternalClassName = classNames(
     'bg-transparent border-0 flex-grow h-full input-md !outline-none px-3 w-full',
@@ -129,90 +53,27 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(({
     inputClassName
   )
 
-  const labelContainerClassName = classNames(
-    'duration-300 mb-1 px-0 relative transition-all z-10',
-    {
-      'pointer-events-none': !staticLabel && !props.value,
-      'opacity-50': props.disabled
-    }
-  )
-
-  const sideComponentsClassName = classNames(
-    'flex items-center justify-center relative',
-    {
-      'opacity-0': !hasValue && !hasFocus && !staticLabel && labelContent,
-      '!bg-base-200 cursor-not-allowed opacity-50': props.disabled
-    }
-  )
-
-  const borderClasses = className?.split(' ').filter(cl => cl.includes('border') || cl.includes('rounded'));
-  const focusElementClassName = classNames(
-    {
-      "border-b-zinc-300": !hasFocus && !errorMessage,
-      "!border-error": !!errorMessage,
-    },
-    borderClasses
-  )
-
   return (
-    <div>
-      {
-        labelContent && (
-          <div
-            className={labelContainerClassName}
-            ref={labelContainerRef}
-          >
-            <label htmlFor={props.id}>{labelContent}</label>
-          </div>
-        )
-      }
-      <div
-        className={inputContainerClassName}
-        onClick={handleClickContainer}
-      >
-        {
-          !!prefixInput &&
-          (
-            <div
-              className={sideComponentsClassName}
-            >
-              {prefixInput}
-            </div>
-          )
-        }
-        <UnstyledTextInput
-          {...props}
-          className={inputInternalClassName}
-          onBlur={onBlurInput}
-          onChange={onInputChange}
-          onFocus={onFocusInput}
-          placeholder={(hasFocus || staticLabel || !labelContent) ? placeholder : ''}
-          ref={mergeRefs(inputRef, ref)}
-        />
-        {
-          !!suffixInput &&
-          (
-            <div
-              className={sideComponentsClassName}
-            >
-              {suffixInput}
-            </div>
-          )
-        }
-        <FocusElement
-          className={focusElementClassName}
-          hasFocus={hasFocus}
-        />
-      </div>
-      {
-        typeof errorMessage !== 'boolean' ?
-          (
-            <ErrorMessage className='mt-1'>
-              {errorMessage}
-            </ErrorMessage>
-          ) :
-          null
-      }
-    </div>
+    <BaseInput
+      className={className}
+      disabled={props.disabled}
+      errorMessage={errorMessage}
+      hasFocus={hasFocus}
+      id={props.id}
+      inputRef={inputRef}
+      inputSize={inputSize}
+      labelContent={labelContent}
+      lightBackground={lightBackground}
+      prefixInput={prefixInput}
+      suffixInput={suffixInput}
+    >
+      <UnstyledTextInput
+        {...props}
+        className={inputInternalClassName}
+        onBlur={onBlurInput}
+        onFocus={onFocusInput}
+        ref={mergeRefs(inputRef, ref)}
+      />
+    </BaseInput>
   )
 })

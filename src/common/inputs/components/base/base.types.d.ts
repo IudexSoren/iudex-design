@@ -2,8 +2,8 @@ import { InputBaseProps } from "@common/inputs/shared.types";
 
 export interface BaseInputProps extends Omit<InputBaseProps, 'inputClassName'> {
   children: ReactElement | string
-  className: string
-  handleClickContainer: () => void
+  className?: string
   hasFocus?: boolean
   id?: string
+  inputRef?: React.Ref
 }
