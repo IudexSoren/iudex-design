@@ -4,10 +4,7 @@ import classNames from 'classnames'
 import { mergeRefs } from '@common/other/merge-refs'
 
 import { UnstyledTextInput } from './UnstyledTextInput'
-
-import { ErrorMessage } from '../ErrorMessage'
 import { BaseInput } from '../base'
-import { FocusElement } from '@common/other/components/FocusElement'
 
 import { TextInputProps } from './text-input.types'
 
