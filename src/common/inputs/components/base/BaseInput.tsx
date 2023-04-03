@@ -16,11 +16,16 @@ export const BaseInput: React.FC<BaseInputProps> = ({
   inputSize,
   labelContent,
   lightBackground,
+  onClickInputContainer,
   prefixInput,
   suffixInput
 }) => {
 
-  const handleClickContainer = () => {
+  const handleClickContainer = (event: React.MouseEvent) => {
+    if (onClickInputContainer) {
+      onClickInputContainer(event);
+    }
+
     if (!inputRef.current) return;
 
     inputRef.current.focus();

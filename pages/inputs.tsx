@@ -778,13 +778,8 @@ const Inputs: NextPage = () => {
 
         <div>
           <TimePicker
-            errorMessage={
-              <div className='flex gap-1 items-center'>
-                <CancelIcon /> Required
-              </div>
-            }
             labelContent="Time"
-            value='00:04'
+            value='23:04'
           />
         </div>
       </div>

@@ -1,7 +1,17 @@
 import { InputBaseProps } from "@common/inputs/shared.types"
 
-export interface TimePickerProps extends InputBaseProps {
+declare global {
+
+  type timeFormat = '12h' | '24h'
+
+}
+
+export interface TimePickerProps extends InputBaseProps, TimeFormatAttr {
   className?: string
   id?: string
   value?: string
+}
+
+export interface TimeFormatAttr {
+  format?: timeFormat
 }

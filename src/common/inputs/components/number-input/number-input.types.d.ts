@@ -1,16 +1,25 @@
 import { InputHTMLAttributes } from "react"
-import { InputBaseProps } from "@common/inputs/shared.types"
 
-export interface NumberInputProps extends InputHTMLAttributes<HTMLInputElement>, InputBaseProps {
+import { InputBaseProps } from "@common/inputs/shared.types"
+import { UnstyledTextInputProps } from "../text-input/text-input.types"
+
+interface BaseNumberInputProps {
   integer?: boolean
   max?: number
   min?: number
-  showControls?: boolean
   step?: number
-  value?: number | string
+}
+
+export interface NumberInputProps extends BaseNumberInputProps, InputHTMLAttributes<HTMLInputElement>, InputBaseProps {
+  inputClassName?: string
+  showControls?: boolean
 }
 
 export interface NumberInputSuffixControlsProps {
   onIncrementValue: () => void
   onDecrementValue: () => void
+}
+
+export interface UnstyledNumberInputProps extends BaseNumberInputProps, InputHTMLAttributes<HTMLInputElement>, UnstyledTextInputProps, {
+
 }

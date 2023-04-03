@@ -294,9 +294,8 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
                     isSelectingTime ? (
                       <div className='h-[358px] m-auto w-64'>
                         <TimePicker
-                          className='border-t-0 border-x-0 w-28'
+                          className='border-t-0 border-x-0'
                           inputClassName='!px-0'
-                          inputSize='sm'
                           labelContent={
                             <Typography
                               className='mb-2'

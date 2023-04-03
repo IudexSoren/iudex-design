@@ -6,4 +6,5 @@ export interface BaseInputProps extends Omit<InputBaseProps, 'inputClassName'> {
   hasFocus?: boolean
   id?: string
   inputRef?: React.Ref
+  onClickInputContainer?: (event?: React.MouseEvent) => void
 }
