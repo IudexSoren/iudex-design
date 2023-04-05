@@ -776,8 +776,15 @@ const Inputs: NextPage = () => {
           TimePicker
         </Typography>
 
-        <div>
+        <div className='mb-5'>
           <TimePicker
+            labelContent="Time"
+            value='23:04'
+          />
+        </div>
+        <div className='mb-5'>
+          <TimePicker
+            format='12h'
             labelContent="Time"
             value='23:04'
           />

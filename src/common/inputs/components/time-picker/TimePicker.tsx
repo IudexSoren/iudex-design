@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { mergeRefs } from '@common/other/merge-refs'
 
-import { DropdownSelect, ErrorMessage, UnstyledNumberInput } from '@common/inputs'
+import { DropdownSelect, UnstyledNumberInput } from '@common/inputs'
 import { TimeIcon } from '@common/icons';
 
 import { BaseInput } from '../base';
@@ -30,9 +30,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(({
   lightBackground,
   value,
 }, ref) => {
-
-  const DEFAULT_MAX_HOUR = React.useMemo(() => format === "12h" ? 13 : 24, [format]);
-  const DEFAULT_MIN_HOUR = React.useMemo(() => format === "12h" ? 0 : -1, [format]);
 
   const hourInputRef = React.useRef<HTMLInputElement>(null);
   const minutesInputRef = React.useRef<HTMLInputElement>(null);
@@ -80,19 +77,17 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(({
       return;
     }
 
-    if (TIME_REGEX.test(value)) {
-      console.log("Value allowed")
-    } else {
-      console.log("Value disallowed")
-    }
-
     const timeChunks = value.split(':');
     if (!timeChunks || timeChunks.length < 2) {
       throwError();
     }
 
-    checkHour(timeChunks[0]);
-    checkMinutes(timeChunks[1]);
+    const hourChunk = timeChunks[0];
+    const minutesChunk = timeChunks[1];
+    // const secondsChunk = timeChunks[2];
+
+    checkHour(hourChunk);
+    checkMinutes(minutesChunk);
 
     console.log(formatTime());
   }
@@ -102,31 +97,52 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(({
   }
 
   const checkHour = (hourChunk: string) => {
-    const hourNumber = Number(hourChunk);
+    let hourNumber = Number(hourChunk);
 
     if (isNaN(hourNumber)) {
       throwError();
     }
 
-    if (hourNumber >= DEFAULT_MAX_HOUR || hourNumber <= DEFAULT_MIN_HOUR) {
-      throwError();
+    if (hourNumber >= DEFAULT_MAX_HOUR) {
+      hourNumber = DEFAULT_MIN_HOUR + 1;
+    }
+
+    if (hourNumber <= DEFAULT_MIN_HOUR) {
+      hourNumber = DEFAULT_MAX_HOUR - 1;
     }
 
     setHour(formatTimeChunk(hourNumber));
   }
 
   const checkMinutes = (minutesChunk: string) => {
-    const minutesNumber = Number(minutesChunk);
+    let minutesNumber = Number(minutesChunk);
 
     if (isNaN(minutesNumber)) {
       throwError();
     }
 
-    if (minutesNumber >= DEFAULT_MAX_MINUTES || minutesNumber <= DEFAULT_MIN_MINUTES) {
-      throwError();
+    if (minutesNumber >= DEFAULT_MAX_MINUTES) {
+      minutesNumber = DEFAULT_MIN_MINUTES + 1;
+    }
+
+    if (minutesNumber <= DEFAULT_MIN_MINUTES) {
+      minutesNumber = DEFAULT_MAX_MINUTES - 1;
     }
 
     setMinutes(formatTimeChunk(minutesNumber));
+  }
+
+  const onTimeChunkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = event;
+    const { name, value } = target
+    console.log({ name, value });
+    if (name === "hour") {
+      checkHour(value);
+    }
+
+    if (name === "minutes") {
+      checkMinutes(value);
+    }
   }
 
   const formatTimeChunk = (chunk: number | string) => {
@@ -193,15 +209,18 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(({
           type="hidden"
         />
         <UnstyledNumberInput
+          autoComplete='off'
           className={inputsClassName}
           disabled={disabled}
           max={DEFAULT_MAX_HOUR}
           min={DEFAULT_MIN_HOUR}
           name='hour'
           onBlur={onBlurInput}
+          onChange={onTimeChunkChange}
           onFocus={onFocusInput}
           ref={hourInputRef}
-          value={formatTimeChunk(hour)}
+          spellCheck={false}
+          value={hour}
         />
         <div
           className='font-bold text-center text-md'
@@ -209,15 +228,18 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(({
           :
         </div>
         <UnstyledNumberInput
+          autoComplete='off'
           className={inputsClassName}
           disabled={disabled}
           max={DEFAULT_MAX_MINUTES}
           min={DEFAULT_MIN_MINUTES}
           name='minutes'
           onBlur={onBlurInput}
+          onChange={onTimeChunkChange}
           onFocus={(event) => onFocusInput(event)}
           ref={minutesInputRef}
-          value={formatTimeChunk(minutes)}
+          spellCheck={false}
+          value={minutes}
         />
       </div>
     </BaseInput>
