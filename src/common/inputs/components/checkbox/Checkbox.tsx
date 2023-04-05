@@ -49,12 +49,12 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({
   )
 
   const checkboxClassName = classNames(
-    'border-2 border-secondary checkbox checkbox-sm checkbox-secondary !outline-none rounded-full',
+    'border-2 border-secondary checkbox checkbox-sm checkbox-secondary !outline-none rounded-sm',
     className
   )
 
   const focusElementClassName = classNames(
-    '!-inset-[3px] rounded-full'
+    '!-inset-[3px] rounded'
   );
 
   const AsComponent = contentClickable ? 'label' : 'div';
