@@ -21,9 +21,9 @@ module.exports = {
             width: "0px",
           },
           "100%": {
-            height: "500px",
+            height: "2000px",
             opacity: 0,
-            width: "500px",
+            width: "2000px",
           },
         },
       },
