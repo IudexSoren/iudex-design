@@ -21,15 +21,15 @@ export const DropdownSelectItem: React.FC<DropdownSelectItemProps> = ({
   )
 
   return (
-    <Button
-      className={itemClassName}
-      onClick={() => option.disabled ? null : onClickItem(option.value)}
-      tabIndex={option.disabled ? -1 : 0}
+    <li
     >
-      <li
+      <Button
+        className={itemClassName}
+        onClick={() => option.disabled ? null : onClickItem(option.value)}
+        tabIndex={option.disabled ? -1 : 0}
       >
         {option.children ?? option.label}
-      </li>
-    </Button>
+      </Button>
+    </li>
   )
 }

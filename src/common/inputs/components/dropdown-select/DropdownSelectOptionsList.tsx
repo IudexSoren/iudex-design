@@ -6,6 +6,7 @@ import { TextInput } from '@common/inputs'
 import { DropdownSelectOptionsListProps } from '@common/inputs/components/dropdown-select/dropdown-select.types'
 import { DropdownSelectCheckboxItem } from './DropdownSelectCheckboxItem'
 import { DropdownSelectItem } from './DropdownSelectItem'
+import { Typography } from '@common/typographies'
 
 export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps> = ({
   emptyList,
@@ -36,6 +37,18 @@ export const DropdownSelectOptionsList: React.FC<DropdownSelectOptionsListProps>
 
   const renderOptions = React.useCallback((optionsToRender: (DropdownSelectGroupOptionProps | DropdownSelectOptionProps)[]) => {
     const filteredOptions = filterOptionsToRender(optionsToRender);
+
+    if (filteredOptions.length === 0 && filterText.length > 0) {
+      return (
+        <Typography
+          className='p-3 truncate'
+          level='div'
+          size='sm'
+        >
+          No results found for "{filterText}"
+        </Typography>
+      )
+    }
 
     return filteredOptions?.map((option, index) => {
 

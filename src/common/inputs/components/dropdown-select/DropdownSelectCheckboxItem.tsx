@@ -31,20 +31,22 @@ export const DropdownSelectCheckboxItem: React.FC<DropdownSelectCheckboxItemProp
   )
 
   return (
-    <Button
-      className={buttonClassName}
-      tabIndex={option.disabled ? -1 : 0}
-    >
-      <Checkbox
-        checked={checked}
-        containerClassName={itemClassName}
-        labelContent={
-          <div className='flex-grow'>
-            {option.children ?? option.label}
-          </div>
-        }
-        onChange={() => option.disabled ? null : onClickItem(option.value)}
-      />
-    </Button>
+    <li>
+      <Button
+        className={buttonClassName}
+        tabIndex={option.disabled ? -1 : 0}
+      >
+        <Checkbox
+          checked={checked}
+          containerClassName={itemClassName}
+          labelContent={
+            <div className='flex-grow'>
+              {option.children ?? option.label}
+            </div>
+          }
+          onChange={() => option.disabled ? null : onClickItem(option.value)}
+        />
+      </Button>
+    </li>
   )
 }
