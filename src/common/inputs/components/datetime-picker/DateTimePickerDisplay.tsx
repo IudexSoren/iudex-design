@@ -17,7 +17,7 @@ export const DateTimePickerDisplay: React.FC<DateTimePickerDisplayProps> = ({
     <div
       className='bg-primary flex md:flex-col justify-between md:justify-start text-base-100 md:w-60'
     >
-      <div className='md:flex flex-col flex-grow md:flex-grow-0 md:justify-center'>
+      <div className='md:flex flex-col flex-grow md:flex-grow-0 md:justify-center w-36 md:w-auto'>
         <Typography
           className='font-bold pl-3 md:!pl-5 py-3 md:pt-5 select-none uppercase'
           level='div'
@@ -38,9 +38,9 @@ export const DateTimePickerDisplay: React.FC<DateTimePickerDisplayProps> = ({
           />
         </div>
       </div>
-      <div className='flex flex-col flex-grow md:flex-grow-0 md:justify-center'>
+      <div className='flex flex-col flex-grow md:flex-grow-0 md:justify-center w-36 md:w-auto'>
         <Typography
-          className='font-bold pl-3 md:!pl-5 py-3 md:pt-5 select-none uppercase'
+          className='font-bold md:!pl-5 pr-3 md:pr-0 py-3 md:pt-5 select-none text-right md:text-start uppercase'
           level='div'
           size='sm'
         >
@@ -50,11 +50,13 @@ export const DateTimePickerDisplay: React.FC<DateTimePickerDisplayProps> = ({
           <DateTimePickerDateDisplay
             date={date}
             isSelectingDate={false}
+            isTo={true}
             handleIsSelectingDate={handleIsSelectingDate}
           />
           <DateTimePickerTimeDisplay
             date={date}
             isSelectingTime={false}
+            isTo={true}
             handleIsSelectingTime={handleIsSelectingTime}
           />
         </div>

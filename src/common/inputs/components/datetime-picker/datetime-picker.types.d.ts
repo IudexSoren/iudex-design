@@ -16,16 +16,17 @@ declare global {
 
 export interface DateTimePickerDisplayProps {
   date: DateTime
-  isSelectingDate: boolean
-  isSelectingTime: boolean
   handleIsSelectingDate: () => void
   handleIsSelectingTime: () => void
+  isSelectingDate: boolean
+  isSelectingTime: boolean
 }
 
 export interface DateTimePickerDateDisplayProps {
   date: DateTime
-  isSelectingDate: boolean
   handleIsSelectingDate: () => void
+  isSelectingDate: boolean
+  isTo?: boolean
 }
 
 export interface DateTimePickerInnerProps extends DateTimePickerValue {
@@ -35,12 +36,13 @@ export interface DateTimePickerInnerProps extends DateTimePickerValue {
 
 export interface DateTimePickerTimeDisplayProps {
   date: DateTime
-  isSelectingTime: boolean
   handleIsSelectingTime: () => void
+  isSelectingTime: boolean
+  isTo?: boolean
 }
 
 export interface DateTimePickerProps extends DateTimePickerValue {
-  
+
 }
 
 interface DateTimePickerValue {

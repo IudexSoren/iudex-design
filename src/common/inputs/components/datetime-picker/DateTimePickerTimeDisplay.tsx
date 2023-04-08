@@ -9,13 +9,29 @@ import { DateTimePickerTimeDisplayProps } from './datetime-picker.types'
 export const DateTimePickerTimeDisplay: React.FC<DateTimePickerTimeDisplayProps> = ({
   date,
   handleIsSelectingTime,
-  isSelectingTime
+  isSelectingTime,
+  isTo = false,
 }) => {
 
   const buttonClassName = classNames(
-    'btn-primary font-normal h-1/2 md:h-auto justify-start !p-3 md:!pl-5 !pr-0 w-full',
+    'btn-primary font-normal h-1/2 md:h-auto justify-start !py-3 md:!pl-5 w-full',
     {
-      'bg-primary-focus border-primary-focus': isSelectingTime
+      'bg-primary-focus border-primary-focus': isSelectingTime,
+      'pl-0 pr-3 md:pr-0': isTo,
+      'pl-3 !pr-0': !isTo
+    }
+  )
+
+  const typographyClassName = classNames(
+    'flex gap-2 items-center transition-all w-full',
+    {
+      'justify-end md:justify-start': isTo
+    }
+  )
+
+  const iconClassName = classNames(
+    {
+      'order-last md:order-none': isTo
     }
   )
 
@@ -25,11 +41,10 @@ export const DateTimePickerTimeDisplay: React.FC<DateTimePickerTimeDisplayProps>
       onClick={handleIsSelectingTime}
     >
       <Typography
-        className='flex gap-2 items-center transition-all'
+        className={typographyClassName}
         level='div'
-        size={false ? 'xl' : 'md'}
       >
-        <TimeIcon size={false ? '20' : '16'} />
+        <TimeIcon className={iconClassName} />
         <div className='flex gap-1'>
           <span>
             {date.hour > 9 ? date.hour : `0${date.hour}`}

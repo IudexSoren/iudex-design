@@ -44,7 +44,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
       <CalendarDateTimePickerDay
         key={index}
         monthDay={monthDay.toString()}
-        onClick={() => alert(monthDay)}
+        onClick={() => console.log(monthDay)}
       />
     ),
     renderDayHeader: (index, dayName) => (
@@ -232,7 +232,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
                           level='div'
                           size='lg'
                         >
-                          Fecha
+                          Date
                         </Typography>
                         <div
                           className='gap-2 grid grid-cols-2 w-64'
@@ -267,7 +267,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
                           <Button
                             className='btn-ghost flex-grow'
                           >
-                            Hoy
+                            Today
                           </Button>
                           <Button
                             className='btn-ghost px-2 !py-2'
@@ -302,44 +302,10 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
                               level='div'
                               size='lg'
                             >
-                              Hora
+                              Time
                             </Typography>
                           }
                         />
-                        {/* <Typography
-                          className='mb-2'
-                          level='div'
-                          size='lg'
-                        >
-                          Hora
-                        </Typography>
-                        <div className='flex gap-2'>
-                          <NumberInput
-                            className='border-t-0 border-x-0 w-28'
-                            inputClassName='!px-0'
-                            inputSize='sm'
-                            max={24}
-                            min={-1}
-                            name='hour'
-                            onChange={handleChangeHour}
-                            value={selectedHour}
-                          />
-                          <div
-                            className='font-bold text-center text-xl w-4'
-                          >
-                            :
-                          </div>
-                          <NumberInput
-                            className='border-t-0 border-x-0 w-28'
-                            inputClassName='!px-0'
-                            inputSize='sm'
-                            max={60}
-                            min={-1}
-                            name='minutes'
-                            onChange={handleChangeMinutes}
-                            value={selectedMinutes}
-                          />
-                        </div> */}
                       </div>
                     ) : null
                   }

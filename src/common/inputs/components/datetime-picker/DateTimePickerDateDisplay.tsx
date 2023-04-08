@@ -10,12 +10,28 @@ export const DateTimePickerDateDisplay: React.FC<DateTimePickerDateDisplayProps>
   date,
   handleIsSelectingDate,
   isSelectingDate,
+  isTo = false
 }) => {
 
   const buttonClassName = classNames(
-    'btn-primary font-normal h-1/2 md:h-auto justify-start !p-3 md:!pl-5 !pr-0 w-full',
+    'btn-primary font-normal h-1/2 md:h-auto justify-start !py-3 md:!pl-5 w-full',
     {
-      'bg-primary-focus border-primary-focus': isSelectingDate
+      'bg-primary-focus border-primary-focus': isSelectingDate,
+      'pl-0 pr-3 md:pr-0': isTo,
+      'pl-3 !pr-0': !isTo
+    }
+  )
+
+  const typographyClassName = classNames(
+    'flex gap-2 items-center transition-all w-full',
+    {
+      'justify-end md:justify-start': isTo
+    }
+  )
+
+  const iconClassName = classNames(
+    {
+      'order-last md:order-none': isTo
     }
   )
 
@@ -25,10 +41,10 @@ export const DateTimePickerDateDisplay: React.FC<DateTimePickerDateDisplayProps>
       onClick={handleIsSelectingDate}
     >
       <Typography
-        className='flex gap-2 items-center transition-all'
+        className={typographyClassName}
         level='div'
       >
-        <CalendarIcon />
+        <CalendarIcon className={iconClassName} />
         <span>
           {
             date.monthShort.replace('.', '')
