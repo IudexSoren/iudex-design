@@ -20,13 +20,33 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
   max,
   min,
   onBeforeInput,
+  onBlur,
+  onFocus,
   showControls = true,
   step = 1,
   suffixInput,
   ...props
 }, ref) => {
 
+  const [hasFocus, setHasFocus] = React.useState(false);
+
   const innerRef = React.useRef<HTMLInputElement>(null);
+
+  const onFocusInput = (event: React.FocusEvent<HTMLInputElement>) => {
+    setHasFocus(true);
+
+    if (onFocus) {
+      onFocus(event);
+    }
+  }
+
+  const onBlurInput = (event: React.FocusEvent<HTMLInputElement>) => {
+    setHasFocus(false);
+
+    if (onBlur) {
+      onBlur(event);
+    }
+  }
 
   const getInputValue = () => {
     return innerRef.current?.getAttribute('value') ?? '';
@@ -91,6 +111,7 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     <BaseInput
       className={className}
       errorMessage={errorMessage}
+      hasFocus={hasFocus}
       inputRef={innerRef}
       inputSize={inputSize}
       labelContent={labelContent}
@@ -114,7 +135,9 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         ref={mergeRefs(innerRef, ref)}
         spellCheck={false}
         {...props}
+        onBlur={onBlurInput}
         onChange={onInputChange}
+        onFocus={onFocusInput}
       />
     </BaseInput>
     // <TextInput
