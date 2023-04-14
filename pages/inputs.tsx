@@ -20,6 +20,7 @@ const Inputs: NextPage = () => {
     playlists: [],
     rememberMe: true,
     role: 'admin',
+    time: '03:04',
     username: '',
   })
 
@@ -779,15 +780,19 @@ const Inputs: NextPage = () => {
         <div className='mb-5'>
           <TimePicker
             labelContent="Time"
-            value='23:04'
+            max='05:40'
+            min='03:03'
+            name='time'
+            onChange={onInputChange}
+            showSeconds
+            value={formState.time}
           />
         </div>
         <div className='mb-5'>
-          <TimePicker
+          {/* <TimePicker
             format='12h'
             labelContent="Time"
-            value='23:04'
-          />
+          /> */}
         </div>
       </div>
       {/* End of Radio section */}

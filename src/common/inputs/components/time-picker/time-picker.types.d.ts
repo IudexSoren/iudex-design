@@ -1,3 +1,4 @@
+import { InputHTMLAttributes } from "react"
 import { InputBaseProps } from "@common/inputs/shared.types"
 
 declare global {
@@ -6,10 +7,10 @@ declare global {
 
 }
 
-export interface TimePickerProps extends InputBaseProps, TimeFormatAttr {
-  className?: string
-  id?: string
-  value?: string
+export interface TimePickerProps extends InputBaseProps, TimeFormatAttr, InputHTMLAttributes<HTMLInputElement> {
+  max?: string
+  min?: string
+  showSeconds?: boolean
 }
 
 export interface TimeFormatAttr {

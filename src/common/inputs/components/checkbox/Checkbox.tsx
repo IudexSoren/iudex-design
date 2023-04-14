@@ -49,7 +49,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({
   )
 
   const checkboxClassName = classNames(
-    'border-2 border-secondary checkbox checkbox-sm checkbox-secondary !outline-none rounded-sm',
+    'border-2 border-secondary checkbox checkbox-sm checkbox-secondary checked:checkbox-primary !outline-none rounded-sm',
     className
   )
 

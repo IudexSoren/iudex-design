@@ -57,7 +57,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
 
       setTimeout(() => {
         ripples.remove();
-      }, 800);
+      }, 700);
     }
 
     if (onMouseDown) {
@@ -72,7 +72,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
 
   const borderClasses = className?.split(' ').filter(cl => cl.includes('border') || cl.includes('rounded'));
   const focusElementClassName = classNames(
-    '!inset-0',
+    'inset-0',
     borderClasses
   );
 

@@ -49,7 +49,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(({
   )
 
   const radioClassName = classNames(
-    'border-2 border-secondary radio radio-sm radio-secondary !outline-none',
+    'border-2 border-secondary checked:radio-primary radio radio-sm radio-secondary !outline-none',
     className
   )
 

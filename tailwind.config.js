@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        ripple: "ripple 0.8s linear infinite",
+        ripple: "ripple 0.7s cubic-bezier(.02,.07,.92,-0.07) infinite",
       },
       fontFamily: {
         b612: ["B612", "sans-serif"],
